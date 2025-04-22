@@ -1,0 +1,45 @@
+Stable: order of two equal elements is maintained
+
+append vs extend
+li = [1,2,3]
+li.append([4]) => [1,2,3,[4]]
+li.extend([4]) => [1,2,3,4]
+
+Dictionary Comprehension
+keys = ['a','b','c','d','e']
+values = [1,2,3,4,5]
+# but this line shows dict comprehension here
+myDict = { k:v for (k,v) in zip(keys, values)}
+dic=dict.fromkeys(range(5), True)
+
+
+Global Interpreter Lock(GIL)
+Only one thread to take control of python interpreter. Creates bottleneck in multithreaded programs.
+Reference counting: python uses counter for each variable, when it reaches 0 variable is released from memory.
+If multiple threads are accessing same variable it may cause "race" condition, either memory is never released or
+mistakenly released. Also, making multiple locks for shared resources may cause deadlocks. So GIL makes sure
+execution of any python code should have interpreter lock, effectively making python single threaded
+Alternative to this approach is Garbage Collection, it may lose performance of single threaded programs
+
+
+What is a Decorator?
+A decorator is a higher-order function that takes another function as input, adds functionality to it, and returns
+the modified function. Essentially, it “wraps” a function, altering its behavior without changing its core logic.
+
+
+Name mangling
+walrus operator
+monkey patching
+
+
+
+Heapq module
+> popular module to implement priority queue, internally done in typical binary tree with min element as root
+> provides functions to perform on heap with list like behaviour
+> create list list1, heapq.heapify(list1) will create heap IN PLACE, all operations are IN PLACE
+> hq.heappush(h,5), hq.heappop(h), hq.heappushpop(h,5), hq.nlargest(h,3), hq.nsmallest(h,3), hq.heapreplace(h,4),
+  hq.merge(h1,h2)
+> heappushpop will push element first then return smallest element while heapreplace will return the smallest element first
+  then inserts given argument.
+
+

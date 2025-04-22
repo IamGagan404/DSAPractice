@@ -1,0 +1,35 @@
+Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.
+    select distinct city from station where left(city,1) in ("a","e","i","o","u") and right(city,1) in ("a","e","i","o","u")
+
+Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+The STATION table is described as follows:
+    select city, length(city) from station order by length(city)asc , city  limit 1;
+    select city, length(city) from station order by length(city) desc, city  limit 1;
+
+Query the Name of any student in STUDENTS who scored higher than  Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+    1.select name from students where marks > 75 order by substring(name,-3), id
+    2.select name from students where marks > 75 order by right(name,3), id
+
+Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
+Equilateral: It's a triangle with  sides of equal length.
+Isosceles: It's a triangle with  sides of equal length.
+Scalene: It's a triangle with  sides of differing lengths.
+Not A Triangle: The given values of A, B, and C don't form a triangle.
+    select case when a+b <= c or b+c <= a or a+c <= b then "Not A Triangle" when a=b and b=c then "Equilateral" when a=b or b=c or a=c then "Isosceles" else "Scalene" end from triangles
+
+Generate the following two result sets:
+Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical (i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
+Query the number of occurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format:
+There are a total of [occupation_count] [occupation]s.
+where [occupation_count] is the number of occurrences of an occupation in OCCUPATIONS and [occupation] is the lowercase occupation name. If more than one Occupation has the same [occupation_count], they should be ordered alphabetically.
+    select concat(name,concat('(', concat(substr(occupation,1,1),')'))) from occupations order by name;
+    select concat('There are a total of',concat(' ',concat(count(occupation),concat(' ',concat(lower(occupation),'s.'))))) as total from occupations group by occupation order by total;
+
+We define an employee's total earnings to be their monthly salary*months worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. Then print these values as  space-separated integers.
+    SELECT MAX(EARNING), COUNT(EARNING) FROM (SELECT (MONTHS*SALARY) AS EARNING FROM EMPLOYEE) A GROUP BY EARNING ORDER BY EARNING DESC LIMIT 1
+
+Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) in STATION that is less than . Round your answer to  decimal places.
+   select round(long_w,4) from station where lat_n < 137.2345 order by lat_n desc limit 1
+
+Write a solution to find all dates' id with higher temperatures compared to its previous dates (yesterday).
+    select w1.id from weather w1 join weather w2 on datediff(w1.recordDate,w2.recordDate) = 1 where w1.temprature > w2.temprature
