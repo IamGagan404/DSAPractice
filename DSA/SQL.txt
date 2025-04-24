@@ -33,3 +33,8 @@ Query the Western Longitude (LONG_W) for the largest Northern Latitude (LAT_N) i
 
 Write a solution to find all dates' id with higher temperatures compared to its previous dates (yesterday).
     select w1.id from weather w1 join weather w2 on datediff(w1.recordDate,w2.recordDate) = 1 where w1.temprature > w2.temprature
+
+Get cum sum of all rows above the row
+select a.turn, sum(b.weight) as cum_weight from queue a join queue b on a.turn >= b.turn group by a.turn
+
+

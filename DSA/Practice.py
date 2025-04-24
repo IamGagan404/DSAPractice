@@ -1360,51 +1360,102 @@ Please upvote (only if you feel helpful) , so others could also see this
 # majority = findMajority(arr, n)
 
 # 229 majority element 2 - at max 2 element will be in answer apply extended Boyer-Moore Majority Voting Algorithm
-def maj_ele(nums):
-    cnt1, cnt2 = 0,0
-    ele1,ele2 = -float('inf'),-float('inf')
-    for i in range(len(nums)):
-        if cnt1 == 0 and ele2 != nums[i]:
-            ele1 = nums[i]
-            cnt1 = 1
-        elif cnt2 == 0 and ele1 != nums[i]:
-            ele2 = nums[i]
-            cnt2 = 1
-        elif nums[i] == ele1: cnt1 += 1
-        elif nums[i] == ele2: cnt2 += 1
+# def maj_ele(nums):
+#     cnt1, cnt2 = 0,0
+#     ele1,ele2 = -float('inf'),-float('inf')
+#     for i in range(len(nums)):
+#         if cnt1 == 0 and ele2 != nums[i]:
+#             ele1 = nums[i]
+#             cnt1 = 1
+#         elif cnt2 == 0 and ele1 != nums[i]:
+#             ele2 = nums[i]
+#             cnt2 = 1
+#         elif nums[i] == ele1: cnt1 += 1
+#         elif nums[i] == ele2: cnt2 += 1
+#         else:
+#             cnt1 -= 1
+#             cnt2 -= 1
+#     cnt1,cnt2 = 0,0
+#     for i in range(len(nums)):
+#         if nums[i] == ele1: cnt1 += 1
+#         if nums[i] == ele2: cnt2 += 1
+#     re = []
+#     if cnt1 > len(nums)//3: re.append(ele1)
+#     if cnt2 > len(nums)//3: re.append(ele2)
+#     return re
+#     return ele1,ele2
+# print(maj_ele([1,2,3,1,2,2,8,2,2]))
+#
+# # 1366 rank teams with votes
+# def rank_teams(votes):
+#     count = {}
+#     for i in range(len(votes)):
+#         for j in range(len(votes[i])):
+#             if votes[i][j] not in count.keys():
+#                 count[votes[i][j]] = [j+1]
+#             else:
+#                 count[votes[i][j]].append(j+1)
+#     avg = {}
+#     for k,v in count.items():
+#         if k not in avg.keys():
+#             avg[k] = sum(v)/len(v)
+#     print(count)
+#     print(avg)
+# print(rank_teams(["WXYZ","XYZW"]))
+
+# 2799 count complete subarray in an array
+# def complete_array(nums):
+#     k = len(set(nums))
+#     count = 0
+#     result = []
+#     for i in range(len(nums)):
+#         i_set = set()
+#         for j in range(i,len(nums)):
+#             i_set.add(nums[j])
+#             if len(i_set) == k:
+#                 count += 1
+#     return count
+# print(complete_array(nums = [1,3,1,2,2]))
+
+# def binary_search(nums,k):
+#     left = 0
+#     right = len(nums)-1
+#     mid = 0
+#
+#     while left <= right:
+#         mid = (left+right)//2
+#         if k > nums[mid]:
+#             left = mid + 1
+#         elif k < nums[mid]:
+#             right = mid - 1
+#         else:
+#             return mid
+#     return -1
+#
+# print(binary_search([1,4,6,7,8,78,3455],6))
+
+
+# 33 search in rotated sorted array
+def rotate_search(nums,target):
+    # step 1
+    left = 0
+    right = len(nums)-1
+    mid = 0
+    pivot = 0
+    while left <= right:
+        print(nums[left:right])
+        mid = (left+right)//2
+        if nums[mid] > nums[right]:
+            left = mid + 1
+        elif nums[mid] < nums[right]:
+            right = mid - 1
         else:
-            cnt1 -= 1
-            cnt2 -= 1
-    cnt1,cnt2 = 0,0
-    for i in range(len(nums)):
-        if nums[i] == ele1: cnt1 += 1
-        if nums[i] == ele2: cnt2 += 1
-    re = []
-    if cnt1 > len(nums)//3: re.append(ele1)
-    if cnt2 > len(nums)//3: re.append(ele2)
-    return re
-    return ele1,ele2
-print(maj_ele([1,2,3,1,2,2,8,2,2]))
-
-# 1366 rank teams with votes
-def rank_teams(votes):
-    count = {}
-    for i in range(len(votes)):
-        for j in range(len(votes[i])):
-            if votes[i][j] not in count.keys():
-                count[votes[i][j]] = [j+1]
-            else:
-                count[votes[i][j]].append(j+1)
-    avg = {}
-    for k,v in count.items():
-        if k not in avg.keys():
-            avg[k] = sum(v)/len(v)
-    print(count)
-    print(avg)
-print(rank_teams(["WXYZ","XYZW"]))
+            pivot = mid
+            break
+    print(pivot)
+print(rotate_search(nums = [4,5,6,7,0,1,2], target = 0))
 
 
-# GIT !!!!!!!!!
 
 
 
