@@ -1436,25 +1436,208 @@ Please upvote (only if you feel helpful) , so others could also see this
 
 
 # 33 search in rotated sorted array
-def rotate_search(nums,target):
-    # step 1
-    left = 0
-    right = len(nums)-1
-    mid = 0
-    pivot = 0
-    while left <= right:
-        print(nums[left:right])
-        mid = (left+right)//2
-        if nums[mid] > nums[right]:
-            left = mid + 1
-        elif nums[mid] < nums[right]:
-            right = mid - 1
-        else:
-            pivot = mid
-            break
-    print(pivot)
-print(rotate_search(nums = [4,5,6,7,0,1,2], target = 0))
+# def rotate_search(nums,target):
+#     # step 1
+#     left = 0
+#     right = len(nums)-1
+#     mid = 0
+#     pivot = 0
+#     while left <= right:
+#         print(nums[left:right])
+#         mid = (left+right)//2
+#         if nums[mid] > nums[right]:
+#             left = mid + 1
+#         elif nums[mid] < nums[right]:
+#             right = mid - 1
+#         else:
+#             pivot = mid
+#             break
+#     print(pivot)
+# print(rotate_search(nums = [4,5,6,7,0,1,2], target = 0))
 
+
+# 2962 Count Subarrays Where Max Element Appears at Least K Times: Sliding Window
+# def count_sub(nums,k):
+#     max_element = max(nums)
+#     left,right,ans,count = 0,0,0,0
+#     while right < len(nums):
+#         if nums[right] == max_element: count += 1
+#         while count >= k:
+#             if nums[left] == max_element: count -= 1
+#             left += 1
+#             ans += len(nums)-right
+#         right += 1
+#     return ans
+# print(count_sub(nums = [1,3,2,3,3], k = 2))
+
+# 20 valid paranthesis
+# def valid_par(s):
+#     stack = []
+#     s = list(s)
+#     for a in s:
+#         if a == "(" or a == "{" or a == "[":
+#             stack.append(a)
+#         elif a == ")":
+#             if stack and stack[-1] == "(":
+#                 stack = stack[:-1]
+#             else:
+#                 return False
+#         elif a == "}":
+#             if stack and  stack[-1] == "{":
+#                 stack = stack[:-1]
+#             else:
+#                 return False
+#         elif a == "]":
+#             if stack and  stack[-1] == "[":
+#                 stack = stack[:-1]
+#             else:
+#                 return False
+#     if len(stack) == 0: return True
+#     return False
+
+# 32 longest valid para
+# def long_para(s):
+#     stack = [-1]
+#     mx = 0
+#     for i,p in enumerate(s):
+#         if p == "(":
+#             stack.append(i)
+#         else:
+#             stack.pop()
+#             if not stack:
+#                 stack.append(i)
+#             else:
+#                 mx = max(mx,i-stack[-1])
+#     return mx
+# print(long_para( s = "(()"))
+
+# 1295 find numbers with even number of digits
+# def even_digits(nums):
+#     pass
+#     def say_even(num):
+#         re = 0
+#         while num >= 10:
+#             num /= 10
+#             re += 1
+#         return 1 if (re+1)%2 == 0 else 0
+#     re = [say_even(x) for x in nums]
+#     print(re)
+#     return sum(re)
+# print(even_digits(nums = [12,345,2,6,7896]))
+
+# 2071 maximum number of tasks you can assign
+def max_tasks(tasks, workers, pills, strength):
+    pass
+    tasks = sorted(tasks)
+    workers = sorted(workers)
+
+
+
+# 838 push dominos
+def push_dominos(dominos):
+    """
+    # def get_next_state(str):
+    #     state = list(str)
+    #     if state[0] == "." and state[1] == "L":
+    #         state[0] = "L"
+    #     if state[-1] == "." and state[-2] == "R":
+    #         state[0] = "R"
+    #     for i in range(1,len(state)-1):
+    #         if state[i] == ".":
+    #             if (state[i-1] == "L" and state[i+1] == "R") or (state[i-1] == "R" and state[i+1] == "L"):
+    #                 continue
+    #             if state[i-1] == "L" and state[i+1] == "L":
+    #                 state[i] = "L"
+    #             if state[i-1] == "R":
+    #                 state[i] = "R"
+    #     # print(state)"LL.RR.LLRRLL..
+    #     return "".join(state)
+
+    """
+
+    # FORCE APPROACH
+    # dominos = list(dominos)
+    # right_vector = []
+    # left_vector = []
+    # rc,lc = 0,0
+    # for i in range(len(dominos)):
+    #     match dominos[i]:
+    #         case "L":
+    #            rc = 0
+    #            right_vector.append(rc)
+    #         case "R":
+    #             rc = len(dominos)
+    #             right_vector.append(rc)
+    #         case ".":
+    #             if rc != 0:
+    #                 rc -= 1
+    #                 right_vector.append(rc)
+    #             else:
+    #                 right_vector.append(0)
+    # for i in range(len(dominos)-1,-1,-1):
+    #     match dominos[i]:
+    #         case "L":
+    #            lc = -len(dominos)
+    #            left_vector.append(lc)
+    #         case "R":
+    #             lc = 0
+    #             left_vector.append(lc)
+    #         case ".":
+    #             if lc != 0:
+    #                 lc += 1
+    #                 left_vector.append(lc)
+    #             else:
+    #                 left_vector.append(0)
+    # left_vector = left_vector[::-1]
+    # print(right_vector)
+    # print(left_vector)
+    # re = [l+r for (l,r) in zip(left_vector,right_vector)]
+    # re = "".join(["." if x==0 else "R" if x>0 else "L" for x in re])
+    # return re
+# print(push_dominos("R.R...L"))
+
+
+#  3343 count number of balanced permutations
+# sum -> odd -> return 0
+#      -> even -> half sum -> get groups of len(nums)/2 of numbers from sum such that sum is half sum ->
+def count_perm(num):
+
+    pass
+
+
+
+
+
+# 2918. Minimum Equal Sum of Two Arrays After Replacing Zeros
+def min_equal(nums1,nums2):
+    def helper(s1,s2,z1,z2):
+        new_s1 = s1+z1
+        tar = new_s1-s2
+        if tar <= 0: return -1
+        if z2 <= tar:
+            if z2 == 0 and tar != 0:
+                return -1
+            return new_s1
+
+        return -1
+
+    z1,z2,s1,s2 = 0,0,0,0
+    for i in range(len(nums1)):
+        if nums1[i] == 0: z1 += 1
+        s1 += nums1[i]
+    for i in range(len(nums2)):
+        if nums2[i] == 0: z2 += 1
+        s2 += nums2[i]
+    r1 = helper(s1,s2,z1,z2)
+    r2 = helper(s2,s1,z2,z1)
+    print(r1,r2)
+    if r1 != -1: return r1
+    if r2 != -1: return r2
+    return -1
+
+
+
+print(min_equal(nums1 = [2,0,2,0], nums2 = [1,4]))
 
 
 

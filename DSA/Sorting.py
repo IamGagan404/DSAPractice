@@ -51,7 +51,7 @@ def merge(left,right):
     return merged
 
 
-print(merge_sort([2,3,1,41,3,78]))
+print("ll",merge_sort([2,3,1,41,3,78,6,6,6,6,7,44,55,88,9999]))
 
 # Selection Sort O(n^2)
 # get max element put it at end in next iteration reduce array by 1 from last
@@ -94,7 +94,7 @@ def partition(array, low, high):
 
 # function to perform quicksort
 
-arr.sort()
+# arr.sort()
 def quickSort(array, low, high):
     if low < high:
 
