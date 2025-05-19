@@ -1600,45 +1600,101 @@ def push_dominos(dominos):
 #  3343 count number of balanced permutations
 # sum -> odd -> return 0
 #      -> even -> half sum -> get groups of len(nums)/2 of numbers from sum such that sum is half sum ->
-def count_perm(num):
+# def count_perm(num):
+#
+#     pass
+#
+#
+#
+#
+#
+# # 2918. Minimum Equal Sum of Two Arrays After Replacing Zeros
+# def min_equal(nums1,nums2):
+#     def helper(s1,s2,z1,z2):
+#         new_s1 = s1+z1
+#         tar = new_s1-s2
+#         if tar <= 0: return -1
+#         if z2 <= tar:
+#             if z2 == 0 and tar != 0:
+#                 return -1
+#             return new_s1
+#
+#         return -1
+#
+#     z1,z2,s1,s2 = 0,0,0,0
+#     for i in range(len(nums1)):
+#         if nums1[i] == 0: z1 += 1
+#         s1 += nums1[i]
+#     for i in range(len(nums2)):
+#         if nums2[i] == 0: z2 += 1
+#         s2 += nums2[i]
+#     r1 = helper(s1,s2,z1,z2)
+#     r2 = helper(s2,s1,z2,z1)
+#     print(r1,r2)
+#     if r1 != -1: return r1
+#     if r2 != -1: return r2
+#     return -1
+#
+#
+#
+# print(min_equal(nums1 = [2,0,2,0], nums2 = [1,4,0]))
 
-    pass
+
+# 3335. Total Characters in String After Transformations I
+# def tran(s,t):
+    # re = s
+    # for _ in range(t):
+    #     s = re
+    #     re = ""
+    #     for i in range(len(s)):
+    #         if s[i] == "z":
+    #             re += "ab"
+    #         else:
+    #             re += chr(ord(s[i])+1)
+    # return re
 
 
+    # mod = 10**9 + 7
+    # cur = [0] * 26
+    # for char in s:
+    #     cur[ord(char)-ord("a")] += 1
+    #
+    # for _ in range(t):
+    #     next = [0] * 26
+    #     next[0] = cur[25]
+    #     next[1] = (cur[25] + cur[0]) % mod
+    #     for i in range(2,26):
+    #         next[i] = cur[i-1]
+    #     cur = next
+    # return sum(next) % mod
 
 
-
-# 2918. Minimum Equal Sum of Two Arrays After Replacing Zeros
-def min_equal(nums1,nums2):
-    def helper(s1,s2,z1,z2):
-        new_s1 = s1+z1
-        tar = new_s1-s2
-        if tar <= 0: return -1
-        if z2 <= tar:
-            if z2 == 0 and tar != 0:
-                return -1
-            return new_s1
-
-        return -1
-
-    z1,z2,s1,s2 = 0,0,0,0
-    for i in range(len(nums1)):
-        if nums1[i] == 0: z1 += 1
-        s1 += nums1[i]
-    for i in range(len(nums2)):
-        if nums2[i] == 0: z2 += 1
-        s2 += nums2[i]
-    r1 = helper(s1,s2,z1,z2)
-    r2 = helper(s2,s1,z2,z1)
-    print(r1,r2)
-    if r1 != -1: return r1
-    if r2 != -1: return r2
-    return -1
+# print(tran(s = "jqktcurgdvlibczdsvnsg", t = 7517))
 
 
+# 3337. Total Characters in String After Transformations II  "TLE"
+# def trans_2(s,nums,t): # "abbcccyy"
+#     cur = [0] * 26
+#     for char in s:
+#         cur[ord(char)-ord('a')] += 1
+#     # cur  => [1,2,3,0,0...2,0]
+#     # nums => [2,3,2,1,2...4,3]
+#     print(cur)
+#     for _ in range(t):
+#         nxt = [0] * 26
+#         for i in range(len(cur)):
+#             charlen = nums[i]
+#             char = cur[i]
+#             # i ke baad next charlen element ko char times nxt me badha do
+#             for j in range(1,charlen+1):
+#                 nxt[(i+j)%26] = nxt[(i+j)%26] + char
+#         print(cur,nxt)
+#         cur = nxt
+#     return sum(nxt)
+# print(trans_2(s = "azbk", t = 1, nums = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]))
 
-print(min_equal(nums1 = [2,0,2,0], nums2 = [1,4]))
 
-
+for i in range(1,16):
+    print(str(i)+".")
 
 
