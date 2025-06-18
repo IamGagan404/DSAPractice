@@ -98,6 +98,10 @@ def part_sum(nums):  # 0/1 knapsack problem
                 dp[curSum] = dp[curSum] or dp[curSum - num]
         return dp[target_sum]
 
+# 3418. Maximum Amount of Money Robot Can Earn
+def robot_money(coins):
+
+
 
 if __name__ == '__main__':
     # print(climbing_stairs_bu(5))
@@ -105,4 +109,5 @@ if __name__ == '__main__':
     # print(frog_bu([30, 10, 60, 10, 60, 50]))
     # print(frog_td([30, 10, 60, 10, 60, 50]))
     # print(k_frog_bu( [30, 10, 60, 10, 60, 50],2))
-    print(part_sum(nums=[1, 5, 11, 5]))
+    # print(part_sum(nums=[1, 5, 11, 5]))
+    pass

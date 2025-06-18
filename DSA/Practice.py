@@ -1694,7 +1694,143 @@ def push_dominos(dominos):
 # print(trans_2(s = "azbk", t = 1, nums = [2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2]))
 
 
-for i in range(1,16):
-    print(str(i)+".")
+# 73 set matrix zeros
+# def set_zero(matrix):
+#     zeros = []
+#     for i in range(len(matrix)):
+#         for j in range(len(matrix[0])):
+#             if matrix[i][j] == 0:
+#                 zeros.append([i,j])
+#
+#     for z in zeros:
+#         matrix[z[0]] = [0]*len(matrix[0])
+#     for z in zeros:
+#         for row in range(len(matrix)):
+#             matrix[row][z[1]] = 0
+#     return zeros
+# set_zero(matrix = [[0]])
+
+#
+# class UnionFind:
+#     def __init__(self,size):
+#         self.parent = list(range(size))
+#
+#     def find(self,x):
+#         if self.parent[x] == x:
+#             return x
+#         else:
+#             return self.find(self.parent[x])
+#
+#     def unite(self,x,y):
+#         xrep = self.find(x)
+#         yrep = self.find(y)
+#
+#         self.parent[xrep] = yrep
+
+
+# def make_remember():
+#     chache = []
+#
+#     def remember(val):
+#         chache.append(val)
+#         return chache
+#     return remember
+# remeber = make_remember()
+# print(remeber(100))
+# print(remeber(200))
+
+
+# def func1(a,b):
+#     return a+b
+# def func1(a):
+#     return 2*a
+# print(func1(2,4))
+
+
+
+import time
+
+# Define a decorator that logs the input, output, and execution time of a function
+def log(func):
+    # Define a wrapper function that takes any number of arguments
+    def wrapper(*args, **kwargs):
+        # Get the current time before calling the function
+        start = time.time()
+        # Call the original function and store the output
+        result = func(*args, **kwargs)
+        # Get the current time after calling the function
+        end = time.time()
+        # Calculate the elapsed time
+        elapsed = end - start
+        # Log the input, output, and execution time
+        print(f"Input: {args}, {kwargs}")
+        print(f"Output: {result}")
+        print(f"Execution time: {elapsed} seconds")
+        # Return the output
+        return result
+    # Return the wrapper function
+    return wrapper
+
+# Use the decorator on a function that calculates the sum of the first n natural numbers
+@log
+def sum_n(n):
+    # Initialize the sum to zero
+    s = 0
+    # Loop from 1 to n
+    for i in range(1, n + 1):
+        # Add i to the sum
+        s += i
+    # Return the sum
+    return s
+
+
+def sum_n2(n):
+    # Initialize the sum to zero
+    s = 0
+    # Loop from 1 to n
+    for i in range(1, n + 1):
+        # Add i to the sum
+        s += i*2
+    # Return the sum
+    return s
+
+# Call the decorated function
+# sum_n(100)
+# sum_n2(100)
+
+# l1 = [1,2,3,[4,5],{'d':2,'e':4}]
+# l2 = l1[:]
+# l1[1] = 100
+# l2[3][0] = 40000
+# l2[4]['d']=7777777
+# print(l1,l2)
+# def count_up_to(max):
+#     count = 1
+#     while count <= max:
+#         yield count
+#         count += 1
+#
+# for number in count_up_to(5):
+#     print(number)
+
+
+# count_up_to()
+
+
+# 2616. Minimize the Maximum Difference of Pairs
+# def minmaxxdiff(nums,p):
+#     nums.sort()
+#     print(nums)
+#     re = [0]*(len(nums)-1)
+#     for i in range(len(nums)-1):
+#         re[i] = abs(nums[i+1]-nums[i])
+#     # print(re)
+#     re.sort()
+#     re = re[:p]
+#     return re[-1]
+# print(minmaxxdiff(nums = [3,4,2,3,2,1,2], p = 3))
+
+
+
 
 

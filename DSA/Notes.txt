@@ -26,10 +26,58 @@ What is a Decorator?
 A decorator is a higher-order function that takes another function as input, adds functionality to it, and returns
 the modified function. Essentially, it “wraps” a function, altering its behavior without changing its core logic.
 
+def deco(func):
+    def wrapper(*args,**kwargs):
+        re = func(*args,**kwargs)
+        re += 1 #modify the result
+        return re
+    return wrapper
 
-Name mangling
-walrus operator
-monkey patching
+@deco
+def func(n):
+    return n+1
+
+# call the func
+func(2)
+
+GENERATORS
+def count_up_to(max):
+    count = 1
+    while count <= max:
+        yield count
+        count += 1
+
+for number in count_up_to(5):
+    print(number)
+
+
+
+
+There is no method overloading in python
+def func1(a,b):
+    return a+b
+def func1(a):
+    return 2*a
+print(func1(2,4)
+If needed use multiple dispatch
+@dispatch(int,int)
+def func1
+    ...
+@dispatch(int)
+def func1
+    ...
+
+
+@staticmethod
+decorator is used to bind a function to class itself not the class instance
+it does not receive default "self" argument
+a function that could be written as stand alone, but it makes more sense semantically to write within the class
+itself. can be called from outside without creating instance. one example could be function to convert title to slug.
+
+
+Name mangling => class function name __class_.method()
+walrus operator  => assign value at runtime using :=     n:= len(nums)
+monkey patching => override method inside a class with a function defined outside
 
 
 
@@ -41,6 +89,14 @@ Heapq module
   hq.merge(h1,h2)
 > heappushpop will push element first then return smallest element while heapreplace will return the smallest element first
   then inserts given argument.
+
+
+Union Find Data Structure
+Useful when find equivalent relations between a set pf groups
+
+
+
+
 
 
 01. Prefix Sum

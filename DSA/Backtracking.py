@@ -2,7 +2,7 @@
 BLUEPRINT
 example of sudoku solver
 Choice
-what are choices can be made at every step of algorith
+what are choices can be made at every step of algorithm
 
 Constraints
 can we know if this path does not meet our end goal? if not can we "backtrack" to last "good" choice made
@@ -156,10 +156,10 @@ def comb_sum(nums,target):
     nums.sort()
     helper(re,[],nums,0,target)
     return re
-print(comb_sum(nums = [10,1,2,7,6,1,5], target = 8))
+# print(comb_sum(nums = [10,1,2,7,6,1,5], target = 8))
 
 
-# 131 palindrome partionining
+# 131 palindrome partitioning
 def partition(input_string):
     list_of_partitions = []
     backtrack(list_of_partitions, [], input_string, 0)
@@ -175,6 +175,8 @@ def backtrack(list_of_partitions, temporary_list, input_string, start):
                 backtrack(list_of_partitions, temporary_list, input_string, index + 1)
                 temporary_list.pop()
 
+
+
 def is_palindrome(input_string, low, high):
     while low < high:
         if input_string[low] != input_string[high]:
@@ -183,6 +185,120 @@ def is_palindrome(input_string, low, high):
         high -= 1
     return True
 
-print(partition("aab"))
+# print(partition("aab"))
+
+
+# 77 combinations
+def coms(n,k):
+    def helper(re,temp,k,start):
+        if len(temp) == k:
+            re.append(list(temp))
+            return
+        for i in range(start,len(nums)):
+            temp.append(nums[i])
+            helper(re,temp,k,i+1)
+            temp.pop()
+    nums = [i for i in range(1,n+1)]
+    re = []
+    helper(re,[],k,0)
+    return re
+# print(coms(4,2))
+
+#
+# 216 combination sum 3
+def comb_sum3(k,n):
+    def helper(re,temp,n,k,nums,start):
+        if sum(temp) == n and len(temp) == k:
+            re.append(list(temp))
+            return
+        if len(temp) > k or sum(temp) > n:
+            return
+
+        for i in range(start,len(nums)):
+            temp.append(nums[i])
+            helper(re,temp,n,k,nums,i+1)
+            temp.pop()
+    nums = [i for i in range(1,10)]
+    re = []
+    helper(re,[],n,k,nums,0)
+    return re
+# print(comb_sum3(3,9))
+
+# 257 binary tree path
+
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def binary_path(root):
+    def helper(re,temp,node):
+        if not node.left and not node.right:
+            temp = temp  + str(node.val)
+            re.append(temp)
+            return
+        temp = temp  + str(node.value)+ "->"
+        if node.left:
+            helper(re,temp,node.left)
+        if node.right:
+            helper(re,temp,node.right)
+    re = []
+    helper(re,[],root)
+    return re
+
+# 282 expression add operators
+def exp_opr(nums, target): # complete this
+    def helper(re,temp1,temp2,nums,target,exp):
+        temp1 = temp1 + exp + temp2[0]
+        temp2 = temp2[1:]
+        if len(temp1) == (len(nums)*2)-1 and eval(temp1) == target:
+            re.append(temp1)
+            print(re)
+            return
+        if len(temp1) == (len(nums)*2)-1 and eval(temp1) != target:
+            return
+
+        helper(re,temp1,temp2,nums,target,"+")
+        helper(re,temp1,temp2,nums,target,"-")
+        helper(re,temp1,temp2,nums,target,"*")
+
+    re= []
+    helper(re,"",nums,nums,target)
+    return re
+# print(exp_opr(nums = "123", target = 6))
+
+
+# 93 restore IP address
+def restore_ip(s):
+#     choice : put . on 1,2,3 locations
+#     constraints less than 255 no leading zero
+#     goal  if valid add to result
+
+    def helper(re,temp,start,used):
+        if used == 4 and start == len(s):
+            re.append(temp[:-1])
+            return
+        if used > 4 :
+            return
+        for i in range(start,min(len(s),start+3)):
+            if int(s[start:i+1]) < 256 and (i == start or s[start] != "0"):
+                helper(re,temp+s[start:i+1]+".",i+1,used+1)
+    re = []
+    if len(s) > 12:
+        return re
+    helper(re,"",0,0)
+    return re
+# print(restore_ip("25525511135"))
+
+
+
+
+
+
+
+
+
+
 
 
