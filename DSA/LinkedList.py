@@ -3,6 +3,12 @@ class ListNode:
         self.val = val
         self.next = next
 
+class DLLNode:
+    def __init__(self,data,next=None,prev=None):
+        self.data = data
+        self.next = next
+        self.prev = prev
+
 def print_ll(head):
     while head:
         print(head.val,end='->')
@@ -33,7 +39,7 @@ def make_ll(nums):
     return nums[0]
 
 
-head = make_ll([1,2,3,4,5])
+# head = make_ll([1,2,3,4,5])
 
 def reverse_ll(head):
     prev = None
@@ -47,12 +53,63 @@ def reverse_ll(head):
         if fut.next:
             fut = fut.next
     return pres
-print_ll(reverse_ll(head))
+# print_ll(reverse_ll(head))
 
+#################### Striver's Linked List Series ##############################
+# Given the head of a linked list, print the length of the linked list.
+def get_length(head):
+    count = 0
+    while head:
+        count += 1
+        head = head.next
+    return count
 
+# Given the head of a linked list and an integer value, find out whether the integer is present in the linked list or not. Return true if it is present, or else return false.
+def search_element(head,num):
+    temp = head
+    while temp:
+        if temp.val == num:
+            return True
+        temp = temp.next
+    return False
 
+# Given a doubly linked list of size ‘N’ consisting of positive integers, your task is to reverse it and return the head of the modified doubly linked list.
+def reverse_dll(head):
+    cur = head
+    prev = None
+    while cur:
+        prev = cur.prev
+        cur.prev = cur.next
+        cur.next = prev
+        cur = cur.prev
+    return prev.prev
 
-
+# Given two non-empty linked lists l1 and l2 which represent two non-negative integers. The digits are stored in reverse order with each node storing one digit.Add two numbers and return the sum as a linked list.
+def addTwoNumbers(l1, l2):
+    def get_num(head):
+        re = 0
+        count = 0
+        while head:
+            re = re + head.val*(pow(10,count))
+            head = head.next
+            count += 1
+        print(re)
+        return re
+    sum_num = get_num(l1) + get_num(l2)
+    print(sum_num)
+    dummy = ListNode(0)
+    head = dummy
+    while sum_num > 0:
+        data = sum_num % 10
+        sum_num = sum_num // 10
+        new_node = ListNode(data)
+        dummy.next = new_node
+        dummy = new_node
+    return head.next
+#
+# l1 = make_ll([5,4])
+# l2 = make_ll([4])
+# print_ll(addTwoNumbers(l1,l2))
 
 
 
