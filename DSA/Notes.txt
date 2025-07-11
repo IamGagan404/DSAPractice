@@ -11,6 +11,10 @@ values = [1,2,3,4,5]
 # but this line shows dict comprehension here
 myDict = { k:v for (k,v) in zip(keys, values)}
 dic=dict.fromkeys(range(5), True)
+# merge 2 dictionaries
+    d1.update(d2)
+    d3 = d1 | d2
+    d3 = {**d1,**d2}
 
 
 Global Interpreter Lock(GIL)
@@ -94,7 +98,8 @@ Heapq module
 Union Find Data Structure
 Useful when find equivalent relations between a set pf groups
 
-
+# count number of class instances created
+# custom context manager
 
 
 

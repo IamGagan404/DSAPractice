@@ -1831,6 +1831,65 @@ def sum_n2(n):
 # print(minmaxxdiff(nums = [3,4,2,3,2,1,2], p = 3))
 
 
+# 2294. Partition Array Such That Maximum Difference Is K
+# def partmvwkeo(nums,k):
+#     if len(nums) == 0: return nums
+#     nums.sort()
+#     start = 0
+#     end = 1
+#     re = []
+#     while end < len(nums):
+#         if nums[end]-nums[start] <= k:
+#             end += 1
+#         else:
+#             re.append(nums[start:end])
+#             start = end
+#             end = start + 1
+#     re.append(nums[start:end])
+#
+#     print(re)
+# partmvwkeo(nums = [2,2,4,5], k = 0)
+
+# 2840. Check if Strings Can be Made Equal With Operations II
+# def check_str(s1,s2):
+#     s1e,s2e,s1o,s2o = [],[],[],[]
+#     for i in range(len(s1)):
+#         if i%2 == 0:
+#             s1e.append(s1[i])
+#             s2e.append(s2[i])
+#         if i%2 != 0:
+#             s1o.append(s1[i])
+#             s2o.append(s2[i])
+#     if sorted(s1e) == sorted(s2e) and sorted(s1o) == sorted(s2o):
+#         return True
+#     return False
+# print(check_str(s1 = "abe", s2 = "bea"))
+
+# 210. Course Schedule II
+# def course2(num,prereq):#[[1,0],[2,0],[3,1],[3,2]]
+#     re = []
+#     prereq_dict = {}
+#     for pair in prereq:
+#         if pair[0] not in prereq_dict.keys():
+#             prereq_dict[pair[0]] = [pair[1]]
+#         else:
+#             prereq_dict[pair[0]].append(pair[1])
+#     print(prereq_dict)
+#     # get the base course/s
+#     courses = range(num)
+#     for c in courses:
+#         if c not in prereq_dict.keys():
+#             re.append(c)
+#     print(re)
+#
+# course2(4,[[1,0],[2,0],[3,1],[3,2]])
+
+
+
+
+
+
+
 
 
 

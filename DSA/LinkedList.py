@@ -110,7 +110,45 @@ def addTwoNumbers(l1, l2):
 # l1 = make_ll([5,4])
 # l2 = make_ll([4])
 # print_ll(addTwoNumbers(l1,l2))
-#
+
+
+# 328. Odd Even Linked List
+def even_odd(head):
+    dummy = head
+    last_odd = head
+    last_even = head.next
+    og_even = head.next
+    while last_even or last_odd:
+        new_odd = last_even.next
+        if new_odd == None:
+            return dummy
+        new_even = new_odd.next
+        last_odd.next = new_odd
+        last_even.next = new_even
+        new_odd.next = og_even
+        last_odd = new_odd
+        last_even = new_even
+    return dummy
+# print_ll(even_odd(make_ll([1,2,3,4,5,6,7,8])))
+
+
+# add one to linked list
+def addone(head):
+    cur = head
+    num = 0
+    while cur:
+        num = num*10 + cur.val
+        cur = cur.next
+    num = num + 1
+    nums = [int(x) for x in list(str(num))]
+    for a in range(len(nums)):
+        nums[a] = ListNode(nums[a])
+    for i in range(len(nums)-1):
+        nums[i].next = nums[i+1]
+    return nums[0]
+l = make_ll([1,2,3])
+print_ll(addone(l))
+
 
 
 
