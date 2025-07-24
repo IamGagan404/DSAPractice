@@ -16,6 +16,15 @@ dic=dict.fromkeys(range(5), True)
     d3 = d1 | d2
     d3 = {**d1,**d2}
 
+array should contain elements of same data types, consumes less memory
+list can contain elements of multiple data types, consumes more memory
+
+list or any iterators cannot be used as key in dict as they are not hashable and cannot be unique
+
+significance of if __name__ == "__main__":
+    provides clear entry point to program. Helps in execution flow of program, whether program is run directly of imported in different module
+    when a file is run via cmd, python interpreter automatically sets value of variable __name__ to the name of the module
+    so when the condition is satisfied then only code below it is executed. Otherwise, we know program is imported in other module
 
 Global Interpreter Lock(GIL)
 Only one thread to take control of python interpreter. Creates bottleneck in multithreaded programs.

@@ -1885,10 +1885,148 @@ def sum_n2(n):
 # course2(4,[[1,0],[2,0],[3,1],[3,2]])
 
 
+a = 10000
+# b = 20000
+# c = 20000
+# d = 30000
+# e = 40000
+#
+# l = [(4, "zfirst"), (2, ""), (3, ""), (4, "second"), (1, "")]
+# l = sorted(l,key= lambda x:x[0])
+# print(l)
+# print(id(l[1]))
+# print(id(l[2]))
+# print(b is c,b==c)
+
+# my_tuple = ('sara', 6, 5, 0.97)
+# my_list = ['sara', 6, 5, 0.97]
+# print(my_tuple[0])     # output => 'sara'
+# print(my_list[0])     # output => 'sara'
+# my_tuple = ("ansh",4,2,1)    # modifying tuple => throws an error
+# my_list[0] = 'ansh'    # modifying list => list modified
+# print(my_tuple[0])     # output => 'sara'
+# print(my_list[0])
 
 
+# def longestPalindrome(s: str) -> str:
+#     re = ''
+#     palin_len = 0
+#     # aabba
+#     for i in range(len(s)):
+#         l,r = i,i
+#         #odd
+#         while l >= 0 and r < len(s) and s[l] == s[r]:
+#             if r-l+1 > palin_len:
+#                 re = s[l:r+1]
+#                 palin_len = r-l+1
+#             l = l-1
+#             r = r+1
+#         #even
+#         l,r = i,i+1
+#         while l >= 0 and r < len(s) and s[l] == s[r]:
+#             if r-l+1 > palin_len:
+#                 re = s[l:r+1]
+#                 palin_len = r-l+1
+#             l = l-1
+#             r = r+1
+#     return re
+#
+# print(longestPalindrome("aabba"))
 
 
+# def beauty_sum(s): #"aabcb"
+#     re = 0
+#     def helper(s):
+#         freq = {}
+#         for i in s:
+#             if i not in freq.keys():
+#                 freq[i] = 1
+#             else:
+#                 freq[i] += 1
+#         return max(freq.values()) - min(freq.values()) if len(freq.values()) >= 2 else 0
+#     for i in range(len(s)-1):
+#         for j in range(1,len(s)+1):
+#             re += helper(s[i:j])
+#     return re
+#
+# print(beauty_sum("aabcb"))
+
+# 1717. Maximum Score From Removing Substrings
+# def max_sub_score(s,x,y):
+#     score = 0
+#     if x >= y:
+#         r1 = "ab"
+#         r2 = "ba"
+#     else:
+#         r1 = "ba"
+#         r2 = "ab"
+#     print(r1,r2)
+#     # print(s.count("ab"))
+#     while r1 in s or r2 in s:
+#         while r1 in s:
+#             score += s.count(r1)*max(x,y)
+#             print(score)
+#             s = s.replace(r1,"")
+#             print(s)
+#         print("first pass")
+#         while r2 in s:
+#             score += s.count(r2)*min(x,y)
+#             print(score)
+#             s = s.replace(r2,"")
+#             print(s)
+#     return score
+#
+# print(max_sub_score(s = "cdbcbbaaabab", x = 4, y = 5))
+#
+#
+# def maximumGain( s: str, x: int, y: int) -> int:
+#     total_score = 0
+#     high_priority_pair = "ab" if x > y else "ba"
+#     low_priority_pair = "ba" if high_priority_pair == "ab" else "ab"
+#
+#     # First pass: remove high priority pair
+#     string_after_first_pass = remove_substring(s, high_priority_pair)
+#     print(string_after_first_pass)
+#     removed_pairs_count = (len(s) - len(string_after_first_pass)) // 2
+#     print(removed_pairs_count)
+#
+#     # Calculate score from first pass
+#     total_score += removed_pairs_count * max(x, y)
+#
+#     # Second pass: remove low priority pair
+#     string_after_second_pass = remove_substring(
+#         string_after_first_pass, low_priority_pair
+#     )
+#     removed_pairs_count = (
+#         len(string_after_first_pass) - len(string_after_second_pass)
+#     ) // 2
+#
+#     # Calculate score from second pass
+#     total_score += removed_pairs_count * min(x, y)
+#
+#     return total_score
+#
+# def remove_substring(input: str, target_pair: str) -> str:
+#     char_stack = []
+#
+#     # Iterate through each character in the input string
+#     for current_char in input:
+#         # Check if current character forms the target pair with the top of the stack
+#         if (
+#             current_char == target_pair[1]
+#             and char_stack
+#             and char_stack[-1] == target_pair[0]
+#         ):
+#             char_stack.pop()  # Remove the matching character from the stack
+#         else:
+#             char_stack.append(current_char)
+#
+#     # Reconstruct the remaining string after removing target pairs
+#     return "".join(char_stack)
+#
+#
+#
+# print(maximumGain(s = "cdbcbbaaabab", x = 4, y = 5))
 
 
 
