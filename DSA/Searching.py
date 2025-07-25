@@ -27,5 +27,21 @@ def binary_search_recursive(left, right, k, nums):  # O(logN) O(logN)
         return -1
 
 
+def binary_search(nums,target,findfirst):
+    start,end = 0,len(nums)-1
+    ans = -1
+    while start <= end:
+        mid = (start+end) // 2
+        if nums[mid] < target:
+            start = mid + 1
+        elif nums[mid] > target:
+            end = mid - 1
+        else:
+            ans = mid
+            if findfirst:
+                end = mid - 1
+            else:
+                start = mid + 1
+    return ans
 
-
+print(binary_search([1,2,3,3,3,4,5,5,5,6,9,10],5,False))

@@ -28,6 +28,9 @@ significance of if __name__ == "__main__":
 
 Global Interpreter Lock(GIL)
 Only one thread to take control of python interpreter. Creates bottleneck in multithreaded programs.
+It is done to make memory management(reference counting) thread safe
+CPU bound programs doesn't get true parallelism while IO threads are benefited.
+
 Reference counting: python uses counter for each variable, when it reaches 0 variable is released from memory.
 If multiple threads are accessing same variable it may cause "race" condition, either memory is never released or
 mistakenly released. Also, making multiple locks for shared resources may cause deadlocks. So GIL makes sure
@@ -81,12 +84,29 @@ def func1
     ...
 
 
+
+Instance methods
+General type, has "self" keyword, used for modifying class instance data
+
+@classmethod
+applies on class, has "cls" keyword, used to modify class level variables(shared among instances)
+
+class myclass:
+    counter = 0
+
+    @classmethod
+    def increment_counter(cls)
+        cls.counter += 1
+
 @staticmethod
-decorator is used to bind a function to class itself not the class instance
-it does not receive default "self" argument
-a function that could be written as stand alone, but it makes more sense semantically to write within the class
+decorator is used to bind a function to class itself not the class instance, utility function
+it does not receive default "self" or "cls" argument
+a function that could be written as stand alone, but it makes more sense semantically to write within the class namespace
 itself. can be called from outside without creating instance. one example could be function to convert title to slug.
 
+
+
+@property
 
 Name mangling => class function name __class_.method()
 walrus operator  => assign value at runtime using :=     n:= len(nums)

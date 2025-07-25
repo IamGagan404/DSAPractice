@@ -2031,3 +2031,23 @@ a = 10000
 
 
 
+class myclass:
+    count = 0
+
+    def __init__(self):
+        myclass.count += 1
+    # def __del__(self):
+    #     self.dec()
+
+    # @classmethod
+    # def dec(cls):
+    #     cls.count -= 1
+    # @classmethod
+    # def inc(cls):
+    #     cls.count += 1
+
+print(myclass.count)
+d = myclass()
+print(myclass.count)
+del(d)
+print(myclass.count)
