@@ -106,11 +106,45 @@ itself. can be called from outside without creating instance. one example could 
 
 
 
-@property
+@property vs getter/setter
+class myclass:
+    def __init__(self,count):
+        self.count = count
+
+    @property
+    def count(self):
+        return self.count
+
+    @count.setter
+    def salary(self,value):
+        if value < 0:
+            raise ValueError("count negative")
+        self.count = value
+e = myclass(200)
+e.count = 400    setter
+print(e.count) => 400  getter
 
 Name mangling => class function name __class_.method()
+    class student:
+        def __init__(self,name):
+            self.__name = name
+    s = student("abc")
+    print(s._student__name) => abc
+
+
 walrus operator  => assign value at runtime using :=     n:= len(nums)
-monkey patching => override method inside a class with a function defined outside
+
+
+monkey patching => override a method inside a class with a function defined outside
+class A:
+    def mymethod(self):
+        print("inside class")
+
+def new_method(self):
+    print("outside class")
+
+A.mymethod = new_method  => mymethod is overridden
+
 
 
 
