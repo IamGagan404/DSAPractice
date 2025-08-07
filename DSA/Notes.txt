@@ -106,6 +106,32 @@ itself. can be called from outside without creating instance. one example could 
 
 
 
+@abstractmethod
+parent class with @abstractmethod decorator will initialize the method but will not provide the implementation
+child classes must provide implementation for such methods.
+
+from abc import ABC, abstractmethod
+# Define an abstract class
+class Animal(ABC):
+
+    @abstractmethod
+    def sound(self):
+        pass  # This is an abstract method, no implementation here.
+
+# Concrete subclass of Animal
+class Dog(Animal):
+
+    def sound(self):
+        return "Bark"  # Providing the implementation of the abstract method
+
+# Create an instance of Dog
+dog = Dog()
+print(dog.sound())  # Output: Bark
+
+abc is Abstact Base Class need to imported
+
+
+
 @property vs getter/setter
 class myclass:
     def __init__(self,count):
@@ -139,12 +165,9 @@ monkey patching => override a method inside a class with a function defined outs
 class A:
     def mymethod(self):
         print("inside class")
-
 def new_method(self):
     print("outside class")
-
 A.mymethod = new_method  => mymethod is overridden
-
 
 
 
@@ -163,6 +186,47 @@ Useful when find equivalent relations between a set pf groups
 
 # count number of class instances created
 # custom context manager
+
+
+SLDC:
+    Planning,Requirements,Design,Development,Testing,Deployment
+    Waterfall:
+        Similar with basic SDLC
+    Agile:
+        main purpose is to keep up with changing customer requirements, after deployment gather feedback and circle back
+    V,Spiral,Incremental,RAD
+
+
+
+Design Patterns
+    Typical solutions to common engineering problems, customizable blueprints of codes
+Creational
+    provide object creation mechanisms that increase flexibility and reuse of existing code.
+Structural
+    explain how to assemble objects and classes into larger structures, while keeping these structures flexible and efficient.
+Behavioral
+    take care of effective communication and the assignment of responsibilities between objects.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
