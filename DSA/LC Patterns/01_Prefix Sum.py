@@ -53,7 +53,6 @@ class Solution:
                 return 0
         prefix_dict = {0:1}
         prefix = 0
-        prefix_array = [0]
         re = 0
         for i in range(len(nums)):
             prefix += nums[i]
