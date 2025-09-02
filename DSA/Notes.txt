@@ -210,8 +210,21 @@ Behavioral
 
 
 
+Meta classes:
+    provides blueprint how a class should be created
 
+Creation of python class using "type" keyword
+    Normal class are defined using "class" keyword, this is substitute for the same task
 
+def init(self,val):
+    self.val = val
+def get_val(self)
+    return self.val
+MyClass = type("MyClass",(object,),{
+    '__init__':init
+    'get_val':get_val
+})
+obj1 = MyClass(1)
 
 
 
