@@ -110,7 +110,7 @@ itself. can be called from outside without creating instance. one example could 
 parent class with @abstractmethod decorator will initialize the method but will not provide the implementation
 child classes must provide implementation for such methods.
 
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod     # abc is Abstact Base Class need to imported
 # Define an abstract class
 class Animal(ABC):
 
@@ -128,7 +128,7 @@ class Dog(Animal):
 dog = Dog()
 print(dog.sound())  # Output: Bark
 
-abc is Abstact Base Class need to imported
+
 
 
 
@@ -150,7 +150,7 @@ e = myclass(200)
 e.count = 400    setter
 print(e.count) => 400  getter
 
-Name mangling => class function name __class_.method()
+Name mangling => class function name __class_.method()  # primary purpose to avoid name collisions in inheritance
     class student:
         def __init__(self,name):
             self.__name = name
