@@ -209,7 +209,43 @@ def min_rotate(nums):
             ans = min(ans,nums[mid])
             h = mid - 1
     return ans
-print(min_rotate([1,1,1,1,1,1,1,1,1,2,3]))
+# print(min_rotate([1,1,1,1,1,1,1,1,1,2,3]))
+
+
+# find single element in an array
+def single_element(nums):
+    if len(nums) == 1: return nums[0]
+    if nums[0] != nums[1]: return nums[0]
+    if nums[-1] != nums[-2]: return nums[-1]
+
+    l,h = 1,len(nums)-2
+    while l<=h:
+        mid = (l+h)//2
+        if nums[mid] != nums[mid-1] and nums[mid] != nums[mid+1]:
+            return nums[mid]
+        if (mid % 2 == 0 and nums[mid] == nums[mid+1]) or (mid % 2 == 1 and nums[mid] == nums[mid-1]):
+            l = mid + 1
+        else:
+            h = mid - 1
+    return -1
+# print(single_element([1,2,2,3,3,4,4,5,5,6,6]))
+
+# find peak element
+def peak_element(nums):
+    if len(nums) == 1: return nums[0]
+    if nums[0] > nums[1]: return nums[0]
+    if nums[-1] > nums[-2]: return nums[-1]
+    l,h = 1,len(nums)-2
+    while l <= h:
+        mid = (l+h)//2
+        if nums[mid] > nums[mid-1] and nums[mid] > nums[mid+1]:
+            return mid
+        elif nums[mid] > nums[mid-1]:
+            l = mid+1
+        else:
+            h = mid-1
+    return -1
+print(peak_element([1,2,33,4,5,6,8,7,5,1]))
 
 
 
