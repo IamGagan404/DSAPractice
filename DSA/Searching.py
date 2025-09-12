@@ -245,7 +245,38 @@ def peak_element(nums):
         else:
             h = mid-1
     return -1
-print(peak_element([1,2,33,4,5,6,8,7,5,1]))
+# print(peak_element([1,2,33,4,5,6,8,7,5,1]))
+
+# find sqrt of num
+def sqrt(num):
+    l,h = 1,num
+    ans = 1
+
+    while l<=h:
+        mid = (l+h)//2
+        if (mid*mid) <= num: # eliminate left
+            ans = mid
+            l = mid + 1
+        else:
+            h = mid - 1
+    return ans
+# print(sqrt(25))
+
+# find nth root of num
+def n_root(n,num):
+    l,h = 1, num
+    while l <= h:
+        mid = (l+h)//2
+        if pow(mid,n) == num:
+            return mid
+        elif pow(mid,n) < num:
+            l = mid + 1
+        else:
+            h = mid - 1
+    return -1
+# print(n_root(3,162))
+        
+
 
 
 

@@ -2274,102 +2274,102 @@ a = 10000
 # def small_div_thresh(nums,threshold):
 
 # 904. Fruit Into Baskets
-def totalFruit() -> int:
-    count_dict = collections.defaultdict(int)
-    l,total,res = 0,0,0
+# def totalFruit() -> int:
+#     count_dict = collections.defaultdict(int)
+#     l,total,res = 0,0,0
 
-    for r in range(len(nums)):
-        count_dict[nums[r]] += 1
-        total += 1
+#     for r in range(len(nums)):
+#         count_dict[nums[r]] += 1
+#         total += 1
 
-        while len(count_dict) > 2:
-            f = nums[l]
-            count_dict[f] -= 1
-            total -= 1
-            l += 1
-            if not count_dict[f]:
-                count_dict.pop(f)
-        res = max(res,total)
-    return res
-
-
-def upperBound(arr: [int], x: int, n: int) -> int:
-    low = 0
-    high = n - 1
-    ans = n
-
-    while low <= high:
-        mid = (low + high) // 2
-        # maybe an answer
-        if arr[mid] > x:
-            ans = mid
-            # look for smaller index on the left
-            high = mid - 1
-        else:
-            low = mid + 1  # look on the right
-
-    return ans
+#         while len(count_dict) > 2:
+#             f = nums[l]
+#             count_dict[f] -= 1
+#             total -= 1
+#             l += 1
+#             if not count_dict[f]:
+#                 count_dict.pop(f)
+#         res = max(res,total)
+#     return res
 
 
+# def upperBound(arr: [int], x: int, n: int) -> int:
+#     low = 0
+#     high = n - 1
+#     ans = n
+
+#     while low <= high:
+#         mid = (low + high) // 2
+#         # maybe an answer
+#         if arr[mid] > x:
+#             ans = mid
+#             # look for smaller index on the left
+#             high = mid - 1
+#         else:
+#             low = mid + 1  # look on the right
+
+#     return ans
 
 
-def lowerBound(arr: [int], n: int, x: int) -> int:
-    low = 0
-    high = n - 1
-    ans = n
-
-    while low <= high:
-        mid = (low + high) // 2
-        # maybe an answer
-        if arr[mid] >= x:
-            ans = mid
-            # look for smaller index on the left
-            high = mid - 1
-        else:
-            low = mid + 1  # look on the right
-
-    return ans
-
-if __name__ == "__main__":
-    arr = [3, 5, 8, 15, 19]
-    n = 5
-    x = 9
-    ind = lowerBound(arr, n, x)
-    print("The lower bound is the index:", ind)
-
-    arr = [3, 5, 8, 15, 19]
-    n = 5
-    x = 9
-    ind = upperBound(arr, x, n)
-    print("The upper bound is the index:", ind)
 
 
-nums = [0, 2, 5, 6, 8, 12, 15]
-# target is 7
-# get pairs such that nums[i] - nums[j] > target
-# also keep track of min length
+# def lowerBound(arr: [int], n: int, x: int) -> int:
+#     low = 0
+#     high = n - 1
+#     ans = n
 
-# binary search
-# min_sum = nums[i]-target
-# find i in nums where nums[i] < min_sum, maximize i
-# element just less than min_sum
+#     while low <= high:
+#         mid = (low + high) // 2
+#         # maybe an answer
+#         if arr[mid] >= x:
+#             ans = mid
+#             # look for smaller index on the left
+#             high = mid - 1
+#         else:
+#             low = mid + 1  # look on the right
+
+#     return ans
+
+# if __name__ == "__main__":
+#     arr = [3, 5, 8, 15, 19]
+#     n = 5
+#     x = 9
+#     ind = lowerBound(arr, n, x)
+#     print("The lower bound is the index:", ind)
+
+#     arr = [3, 5, 8, 15, 19]
+#     n = 5
+#     x = 9
+#     ind = upperBound(arr, x, n)
+#     print("The upper bound is the index:", ind)
 
 
-def get_target(nums,target):
-    l,r = 0, len(nums)-1
-    ans = None
-    while l<=r:
-        mid = (l+r)//2
-        if nums[mid] == target:
-            return nums[mid]
-        elif nums[mid] < target:
-            ans = arr[mid]
-            l = mid+1
-        else:
-            r = mid - 1
-    return ans
+# nums = [0, 2, 5, 6, 8, 12, 15]
+# # target is 7
+# # get pairs such that nums[i] - nums[j] > target
+# # also keep track of min length
 
-print(get_target([0, 2, 5, 6, 8, 12, 15],7))
+# # binary search
+# # min_sum = nums[i]-target
+# # find i in nums where nums[i] < min_sum, maximize i
+# # element just less than min_sum
+
+
+# def get_target(nums,target):
+#     l,r = 0, len(nums)-1
+#     ans = None
+#     while l<=r:
+#         mid = (l+r)//2
+#         if nums[mid] == target:
+#             return nums[mid]
+#         elif nums[mid] < target:
+#             ans = arr[mid]
+#             l = mid+1
+#         else:
+#             r = mid - 1
+#     return ans
+
+# print(get_target([0, 2, 5, 6, 8, 12, 15],7))
 
 
 
