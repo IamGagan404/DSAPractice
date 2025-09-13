@@ -275,7 +275,56 @@ def n_root(n,num):
             h = mid - 1
     return -1
 # print(n_root(3,162))
-        
+
+import math   
+# koko eating bananas
+def koko(piles,q):
+    def get_speed(piles,k):
+        re = 0
+        for i in range(len(piles)):
+            re += math.ceil(piles[i]/k)
+        return re
+    
+    l,h = 1,max(piles)
+
+    while l<=h:
+        mid = (l+h)//2
+        if get_speed(piles,mid) <= q:
+            h = mid - 1
+        else:
+            l = mid + 1
+    return l
+# print(koko(piles = [30,11,23,4,20], q = 5))
+
+
+# Minimum Number of Days to Make m Bouquets
+def min_boq(bloomDay, m, k):
+    def get_boq(arr,day,k,m):
+        n = len(arr)  # size of the array
+        cnt = 0
+        noOfB = 0
+        for i in range(n):
+            if arr[i] <= day:
+                cnt += 1
+            else:
+                noOfB += cnt // k
+                cnt = 0
+        noOfB += cnt // k
+        return noOfB >= m
+    
+    l,h = min(bloomDay),max(bloomDay)
+    
+    if len(bloomDay) < m*k: return -1
+    while l <= h:
+        mid = (l+h)//2
+        if get_boq(bloomDay,mid,k,m):
+            h = mid - 1
+        else:
+            l = mid + 1
+    return l if l > 0 else -1
+print(min_boq(bloomDay = [1,10,3,10,2], m = 3, k = 1))
+
+
 
 
 
