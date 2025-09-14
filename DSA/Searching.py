@@ -322,8 +322,47 @@ def min_boq(bloomDay, m, k):
         else:
             l = mid + 1
     return l if l > 0 else -1
-print(min_boq(bloomDay = [1,10,3,10,2], m = 3, k = 1))
+# print(min_boq(bloomDay = [1,10,3,10,2], m = 3, k = 1))
 
+# Kth Missing Positive Number
+def k_mission(arr,k):
+    l,h = 1,len(arr)-1
+
+    while l <= h:
+        mid = (l+h)//2
+
+        missing = arr[mid] - (mid+1)
+        if missing < k:
+            l = mid + 1
+        else:
+            h = mid - 1
+    return k+h+1
+# print(k_mission(arr = [2,3,4,7,11], k = 5))
+
+
+# aggresive cows
+def agg_cow(arr,k):
+    arr = sorted(arr)
+    def place_cow(arr,dist,k):
+        cnt_cow = 1
+        last = arr[0]
+        for i in range(1,len(arr)):
+            if arr[i] - last >= dist:
+                cnt_cow += 1
+                last = arr[i]
+        if cnt_cow >= k:
+            return True
+        return False
+    l,h = 1,(arr[-1]-arr[0])
+
+    while l<=h:
+        mid = (l+h)//2
+        if place_cow(arr,mid,k): 
+            l = mid + 1
+        else:
+            h = mid - 1
+    return h
+print(agg_cow([0,1,99,200,300],3))
 
 
 
