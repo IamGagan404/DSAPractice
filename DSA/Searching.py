@@ -362,7 +362,12 @@ def agg_cow(arr,k):
         else:
             h = mid - 1
     return h
-print(agg_cow([0,1,99,200,300],3))
+# print(agg_cow([0,1,99,200,300],3))
+
+
+# Minimize maximum distance between gas stations
+def gas_station1(arr,k): # brute force
+    pass
 
 
 
