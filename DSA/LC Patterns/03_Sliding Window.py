@@ -121,4 +121,5 @@ def fruits_basket(fruits,k):
     return maxl
 # print(fruits_basket(fruits= "abcddefg" , k = 3))
 
+# This is from office laptop
 
