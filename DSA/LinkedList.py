@@ -64,7 +64,8 @@ def get_length(head):
         head = head.next
     return count
 
-# Given the head of a linked list and an integer value, find out whether the integer is present in the linked list or not. Return true if it is present, or else return false.
+# Given the head of a linked list and an integer value, find out whether the integer is present 
+# in the linked list or not. Return true if it is present, or else return false.
 def search_element(head,num):
     temp = head
     while temp:
@@ -73,7 +74,8 @@ def search_element(head,num):
         temp = temp.next
     return False
 
-# Given a doubly linked list of size ‘N’ consisting of positive integers, your task is to reverse it and return the head of the modified doubly linked list.
+# Given a doubly linked list of size ‘N’ consisting of positive integers, 
+# your task is to reverse it and return the head of the modified doubly linked list.
 def reverse_dll(head):
     cur = head
     prev = None
@@ -84,7 +86,9 @@ def reverse_dll(head):
         cur = cur.prev
     return prev.prev
 
-# Given two non-empty linked lists l1 and l2 which represent two non-negative integers. The digits are stored in reverse order with each node storing one digit.Add two numbers and return the sum as a linked list.
+# Given two non-empty linked lists l1 and l2 which represent two non-negative integers. 
+# The digits are stored in reverse order with each node storing one digit.Add two numbers and 
+# return the sum as a linked list.
 def addTwoNumbers(l1, l2):
     def get_num(head):
         re = 0
@@ -106,10 +110,38 @@ def addTwoNumbers(l1, l2):
         dummy.next = new_node
         dummy = new_node
     return head.next
+
+def addTwoNumbers2(l1,l2):
+    dummy = ListNode(0,None)
+    head = dummy
+    carry = 0
+    while l1 or l2:
+
+        if l1:
+            l1_val = l1.val
+        else:
+            l1_val = 0
+        if l2:
+            l2_val = l2.val
+        else:
+            l2_val = 0
+            
+        node_sum = l1_val + l2_val + carry
+        carry = node_sum % 10
+        node_sum = node_sum // 10
+        NewNode = ListNode(carry)
+        head.next = NewNode
+        head = head.next
+        if l1: 
+            l1 = l1.next
+        
+        if l2: l2 = l2.next
+    return dummy.next
+
 #
-# l1 = make_ll([5,4])
-# l2 = make_ll([4])
-# print_ll(addTwoNumbers(l1,l2))
+l1 = make_ll([5,4])
+l2 = make_ll([4])
+print_ll(addTwoNumbers2(l1,l2))
 
 
 # 328. Odd Even Linked List
@@ -147,7 +179,7 @@ def addone(head):
         nums[i].next = nums[i+1]
     return nums[0]
 l = make_ll([1,2,3])
-print_ll(addone(l))
+# print_ll(addone(l))
 
 
 
