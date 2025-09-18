@@ -123,7 +123,7 @@ def fruits_basket(fruits,k):
 
 # This is from office laptop
 # number of substrings having all of a b c 
-def numberOfSubstrings(ss: str):
+def numberOfSubstrings(s: str):
     arr = [-1,-1,-1]
     cnt = 0
     for i in range(len(s)):
