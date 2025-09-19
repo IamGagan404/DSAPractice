@@ -178,10 +178,47 @@ def addone(head):
     for i in range(len(nums)-1):
         nums[i].next = nums[i+1]
     return nums[0]
-l = make_ll([1,2,3])
+# l = make_ll([1,2,3])
 # print_ll(addone(l))
 
+# Reverse linked list in k gropus
+def reverse_k_grps(head,k):
+    def find_k_node(node,k):
+        k -= 1
+        while node and k > 0:
+            node = node.next
+            k -= 1
+        return node
 
+    def reverse_list(node):
+        temp = node
+        prev = None
+        while temp:
+            fut = temp.next
+            temp.next = prev
+            prev = temp
+            temp = fut
+        return prev
+
+    temp = head
+    prev = None
+    while temp:
+        knode = find_k_node(temp,k)
+        if knode == None:
+            if prev: prev.next = temp
+            break
+        nextnode = knode.next
+        knode.next = None
+        reverse_list(temp)
+        if temp == head:
+            head = knode
+        else:
+            prev.next = knode
+        prev = temp
+        temp = nextnode
+    return head
+head = make_ll([1,2,3,4,5,6,7,8,9,10])
+print_ll(reverse_k_grps(head,3))
 
 
 
