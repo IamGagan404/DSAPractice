@@ -62,8 +62,6 @@ class Solution:
                 prefix_dict[prefix] += 1
             else:
                 prefix_dict[prefix] = 1
-
-
         return re
 
 

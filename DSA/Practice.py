@@ -2373,5 +2373,18 @@ a = 10000
 
 
 
+class parent:
+    def same(self):
+        print("parent method")
+    def parentmet(self):
+        self.same()
+        print("same from parent")
 
+class child(parent):
+    def same(self):
+        print("child method")
+
+
+c = child()
+c.parentmet()
 
