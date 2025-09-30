@@ -2390,16 +2390,16 @@ def sum_n2(n):
 
 
 
-# merge overlapping intervals
-def merge_intervals(nums):
-    nums.sort()
-    ans = []
-    for inter in nums:
-        if len(ans) == 0 or ans[-1][1] < inter[0]:
-            ans.append(inter)
-        else:
-            ans[-1][1] = max(ans[-1][1],inter[1])
-    return nums
+# # merge overlapping intervals
+# def merge_intervals(nums):
+#     nums.sort()
+#     ans = []
+#     for inter in nums:
+#         if len(ans) == 0 or ans[-1][1] < inter[0]:
+#             ans.append(inter)
+#         else:
+#             ans[-1][1] = max(ans[-1][1],inter[1])
+#     return nums
 
 
 
