@@ -100,6 +100,7 @@ def part_sum(nums):  # 0/1 knapsack problem
 
 # 3418. Maximum Amount of Money Robot Can Earn
 def robot_money(coins):
+    pass
 
 
 

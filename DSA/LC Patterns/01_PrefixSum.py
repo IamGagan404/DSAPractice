@@ -43,7 +43,7 @@ class Solution:
                 pref_sum[pref] = i
         return max_len
 
-# 560. Subarray Sum Equals K
+# 560. Subarray Sum Equals K similar for xor equals k
 class Solution:
     def subarraySum(self, nums: List[int], k: int) -> int:
         if len(nums) <= 1:

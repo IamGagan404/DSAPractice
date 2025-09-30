@@ -1632,10 +1632,10 @@ Please upvote (only if you feel helpful) , so others could also see this
 # print(even_digits(nums = [12,345,2,6,7896]))
 
 # 2071 maximum number of tasks you can assign
-def max_tasks(tasks, workers, pills, strength):
-    pass
-    tasks = sorted(tasks)
-    workers = sorted(workers)
+# def max_tasks(tasks, workers, pills, strength):
+#     pass
+#     tasks = sorted(tasks)
+#     workers = sorted(workers)
 
 
 
@@ -1991,7 +1991,7 @@ def sum_n2(n):
 # course2(4,[[1,0],[2,0],[3,1],[3,2]])
 
 
-a = 10000
+# a = 10000
 # b = 20000
 # c = 20000
 # d = 30000
@@ -2373,18 +2373,33 @@ a = 10000
 
 
 
-class parent:
-    def same(self):
-        print("parent method")
-    def parentmet(self):
-        self.same()
-        print("same from parent")
+# class parent:
+#     def same(self):
+#         print("parent method")
+#     def parentmet(self):
+#         self.same()
+#         print("same from parent")
 
-class child(parent):
-    def same(self):
-        print("child method")
+# class child(parent):
+#     def same(self):
+#         print("child method")
 
 
-c = child()
-c.parentmet()
+# c = child()
+# c.parentmet()
+
+
+
+# merge overlapping intervals
+def merge_intervals(nums):
+    nums.sort()
+    ans = []
+    for inter in nums:
+        if len(ans) == 0 or ans[-1][1] < inter[0]:
+            ans.append(inter)
+        else:
+            ans[-1][1] = max(ans[-1][1],inter[1])
+    return nums
+
+
 
