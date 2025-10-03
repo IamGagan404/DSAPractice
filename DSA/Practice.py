@@ -2402,4 +2402,5 @@ def sum_n2(n):
 #     return nums
 
 
-
+l = [[1,20],[2,30],[1,10],[1,15],[2,50],[3,10]]
+print(sorted(l,key=lambda x: (x[0], -x[1])))
