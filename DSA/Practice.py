@@ -2402,5 +2402,77 @@ def sum_n2(n):
 #     return nums
 
 
-l = [[1,20],[2,30],[1,10],[1,15],[2,50],[3,10]]
-print(sorted(l,key=lambda x: (x[0], -x[1])))
+# l = [[1,20],[2,30],[1,10],[1,15],[2,50],[3,10]]
+# print(sorted(l,key=lambda x: (x[0], -x[1])))
+
+# print(29028711823%7)
+
+
+# import sys, gc
+
+# a = []
+# b = [a]
+# a.append(b)
+
+# print(sys.getrefcount(a))  # shows reference count
+# del a, b
+# gc.collect()  # forces garbage collection for cyclic refs
+
+# import time
+# from functools import wraps
+
+# def timer(func):
+#     @wraps(func)
+#     def wrapper(*args, **kwargs):
+#         start = time.time()
+#         result = func(*args, **kwargs)
+#         end = time.time()
+#         print(f"{func.__name__} executed in {end - start:.4f}s")
+#         return result
+#     return wrapper
+
+# @timer
+# def compute():
+#     time.sleep(1)
+#     return "done"
+
+# compute()
+
+
+# import threading
+# import time
+
+# def cpu_task():
+#     x = 0
+#     for _ in range(10**7):
+#         x += 1
+
+# start = time.time()
+# # threads = [threading.Thread(target=cpu_task) for _ in range(4)]
+# # [t.start() for t in threads]
+# # [t.join() for t in threads]
+# cpu_task()
+# print("Time:", time.time() - start)
+
+
+
+def frogJump(heights):
+    p1,p2 = 0,abs(heights[0]-heights[1])
+    for i in range(2,len(heights)):
+        re = min(p1+abs(heights[i]-heights[i-2]),p2+abs(heights[i]-heights[i-1]))
+        p1 = p2
+        p2 = re
+    return re
+# print(frogJump([7, 5, 1, 2, 6]))
+
+
+def f():
+    global q
+    t = (10,)
+    q = t + q[1:]
+    return q
+q = (1,2,3)    
+print(q)
+e = f()
+
+print(q)

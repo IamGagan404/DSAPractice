@@ -19,6 +19,8 @@ dic=dict.fromkeys(range(5), True)
 array should contain elements of same data types, consumes less memory
 list can contain elements of multiple data types, consumes more memory
 
+mutable ojbets are passed by reference while immutable values are passed by value
+
 list or any iterators cannot be used as key in dict as they are not hashable and cannot be unique
 
 significance of if __name__ == "__main__":
@@ -37,12 +39,19 @@ mistakenly released. Also, making multiple locks for shared resources may cause 
 execution of any python code should have interpreter lock, effectively making python single threaded
 Alternative to this approach is Garbage Collection, it may lose performance of single threaded programs
 
+sys.getrefcount(var) => gives RC
+
+gc module
+cyclic references can not be handled using RC alone. gc.collect() forces python to detect unreacheble cycles
+and release their memory
+
 
 What is a Decorator?
 A decorator is a higher-order function that takes another function as input, adds functionality to it, and returns
 the modified function. Essentially, it “wraps” a function, altering its behavior without changing its core logic.
 
 def deco(func):
+    @wraps(func). => maintaines thingslike __name__ metadata 
     def wrapper(*args,**kwargs):
         re = func(*args,**kwargs)
         re += 1 #modify the result
@@ -226,6 +235,45 @@ MyClass = type("MyClass",(object,),{
 })
 obj1 = MyClass(1)
 
+
+Method resolution order
+defines how a method is looked up in class hiearchy
+C3 linearization algorithm
+class A:
+    def show(self):
+        print("A")
+
+class B(A):
+    def show(self):
+        print("B")
+
+class C(A):
+    def show(self):
+        print("C")
+
+class D(B, C):
+    pass
+
+d = D()
+d.show() # B
+print(D.__mro__). # (<class '__main__.D'>, <class '__main__.B'>, <class '__main__.C'>, <class '__main__.A'>, <class 'object'>)    
+
+
+Closures
+just functions passed as parametrs, they remeber the envirmonet they were created in. 
+def make_multiplier(n):
+    def multiplier(x):
+        return x * n  # remembers 'n' from enclosing scope
+    return multiplier
+
+times3 = make_multiplier(3)
+times5 = make_multiplier(5)
+
+print(times3(10))  # 30
+print(times5(10))  # 50
+
+
+    
 
 
 
