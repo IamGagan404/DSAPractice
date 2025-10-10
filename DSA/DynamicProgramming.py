@@ -102,6 +102,202 @@ def part_sum(nums):  # 0/1 knapsack problem
 def robot_money(coins):
     pass
 
+def ninja_training(nums): # striver
+    def recursion(nums):
+        def helper(day,last):
+            if day == 0:
+                maxi = 0
+                for i in range(0,3):
+                    if i != last:
+                        maxi = max(maxi,nums[0][i])
+                return maxi
+            maxi = 0
+            for i in range(0,3):
+                if i != last:
+                    points = nums[day][i] + helper(day-1,i)
+                    maxi = max(maxi,points)
+            return maxi
+        return helper(len(nums)-1,3)
+    
+
+    def memoization(nums):
+        n = len(nums)
+        dp = [[-1]*4 for i in range(n)]
+        def helper(day,last,dp):
+            if dp[day][last] != -1: return dp[day][last]
+            if day == 0:
+                maxi = 0
+                for i in range(0,3):
+                    if i != last:
+                        maxi = max(maxi,nums[0][i])
+                dp[day][last] = maxi
+                return dp[day][last]
+            
+            maxi = 0
+            for i in range(0,3):
+                if i != last:
+                    points = nums[day][i] + helper(day-1,i,dp)
+                    maxi = max(maxi,points)
+            dp[day][last] = maxi
+            return maxi
+
+        return helper(len(nums)-1,3,dp)
+
+    def tabulation(nums):
+        n = len(nums)
+        dp = [[-1]*4 for _ in range(n)]
+
+        dp[0][0] = max(nums[0][1],nums[0][2])
+        dp[0][1] = max(nums[0][0],nums[0][2])
+        dp[0][2] = max(nums[0][1],nums[0][0])
+        dp[0][3] = max(nums[0][0],nums[0][1],nums[0][2])
+
+        for day in range(1,n):
+            for last in range(0,4):
+                dp[day][last] = 0
+                for i in range(0,3):
+                    if i != last:
+                        points = nums[day][i] + dp[day-1][i]
+                        dp[day][last] = max(dp[day][last],points)
+        return dp[n-1][3]
+    
+    def space_optimization(nums):
+        n = len(nums)
+        dp = [-1]*4
+
+        dp[0] = max(nums[0][1],nums[0][2])
+        dp[1] = max(nums[0][0],nums[0][2])
+        dp[2] = max(nums[0][1],nums[0][0])
+        dp[3] = max(nums[0][0],nums[0][1],nums[0][2])
+
+        for day in range(1,n):
+            temp = [0]*4
+            for last in range(0,4):
+                temp[last] = 0
+                for i in range(0,3):
+                    if i != last:
+                        points = nums[day][i] + dp[i]
+                        temp[last] = max(temp[last],points)
+            dp = temp
+        return dp[3]
+
+
+
+
+    return space_optimization(nums)
+
+def grid(m,n):  # Unique paths LC
+    dp = [[-1]*n for _ in range(m)]
+
+    # re = 0
+    # def helper(a,b):
+    #     if a == 0 and b == 0:
+    #         return 1
+    #     if a < 0 or b < 0:
+    #         return 0
+    #     if dp[a][b] != -1 : return dp[a][b]
+    #     up = helper(a-1,b)
+    #     left = helper(a,b-1)
+    #     dp[a][b] = up+left
+    #     return  dp[a][b]
+    # return helper(m-1,n-1)
+
+    for i in range(m):
+        for j in range(n):
+            if i == 0 and j == 0:
+                dp[0][0] = 1
+                continue
+            up = 0
+            left = 0
+            if i > 0: up = dp[i-1][j]
+            if j > 0: left = dp[i][j-1]
+            dp[i][j] = up+left
+    return dp[m-1][n-1]
+
+def minimum_path_sum(nums):
+    m = len(nums)
+    n = len(nums[0])
+    dp = [[-1]*n for _ in range(m)]
+    # def helper(i,j):
+    #     if i == 0 and j == 0:
+    #         return nums[i][j]
+    #     if i < 0 or j < 0:
+    #         return float('inf')
+    #     if dp[i][j] != -1: return dp[i][j]
+    #     up = nums[i][j] + helper(i-1,j)
+    #     left = nums[i][j] + helper(i,j-1)
+    #     dp[i][j] = min(left,up)
+    #     return min(left,up)
+    # return helper(len(nums)-1,len(nums[0])-1)
+
+    for i in range(m):
+        for j in range(n):
+            print(dp)
+            if i == 0 and j == 0:
+                dp[i][j] = nums[i][j]
+            else:
+                up,left = nums[i][j],nums[i][j]
+                if i > 0:
+                    up = nums[i][j] + dp[i-1][j]
+                else:
+                    up += int(1e9)
+                if j > 0:
+                    left = nums[i][j] + dp[i][j-1]
+                else:
+                    left += int(1e9)
+                dp[i][j] = min(up,left)
+    return dp[m-1][n-1]
+
+def minimumTotal(tri):
+        n = len(tri[-1])
+        dp = [[-1]*n for _ in range(n)]
+
+        # def helper(i,j):
+        #     if i == n-1: return tri[i][j]
+        #     if dp[i][j] != -1: return dp[i][j]
+        #     down = tri[i][j] + helper(i+1,j)
+        #     dg = tri[i][j] + helper(i+1,j+1)
+        #     dp[i][j] = min(down,dg)
+        #     return min(down,dg)
+        # return helper(0,0)
+        for j in range(n):
+            dp[n-1][j] = tri[n-1][j]
+        for i in range(n-2,-1,-1):
+            for j in range(i,-1,-1):
+                down = tri[i][j] + dp[i+1][j]
+                dg = tri[i][j] + dp[i+1][j+1]
+                dp[i][j] = min(down,dg)
+        return dp[0][0]
+
+
+def minFallingPathSum(matrix): # LC 931
+        n = len(matrix)
+        dp = [[-1] * n for _ in range(n)]
+        # def helper(i,j):
+        #     if i == n-1: return matrix[i][j]
+        #     if dp[i][j] != -1: return dp[i][j]
+        #     down = matrix[i][j] + helper(i+1,j)
+        #     dgl,dgr = float('inf'),float('inf')
+        #     if j > 0: dgl = matrix[i][j] + helper(i+1,j-1)
+        #     if j < n-1: dgr = matrix[i][j] + helper(i+1,j+1)
+        #     dp[i][j] = min(down,dgl,dgr)
+        #     return min(down,dgl,dgr)
+        # re = float('inf')
+        # for i in range(n):
+        #     re = min(re,helper(0,i))
+        # return re
+
+        for i in range(n):
+            dp[-1][i] = matrix[-1][i]
+        for i in range(n-2,-1,-1):
+            for j in range(n-1,-1,-1):
+                down = matrix[i][j] + dp[i+1][j]
+                dgl,dgr = float('inf'),float('inf')
+                if j > 0: dgl = matrix[i][j] + dp[i+1][j-1]
+                if j < n-1: dgr = matrix[i][j] + dp[i+1][j+1]
+                dp[i][j] = min(down,dgl,dgr)
+        return min(dp[0])
+
 
 
 if __name__ == '__main__':
@@ -111,4 +307,8 @@ if __name__ == '__main__':
     # print(frog_td([30, 10, 60, 10, 60, 50]))
     # print(k_frog_bu( [30, 10, 60, 10, 60, 50],2))
     # print(part_sum(nums=[1, 5, 11, 5]))
+    # print(ninja_training(nums=[[10, 40, 70],[20, 50, 80],[30, 60, 90]]))
+    # print(minimum_path_sum(nums=[[5, 9, 6], [11, 5, 2]]))
+    # print(minimumTotal([[2],[3,4],[6,5,7],[4,1,8,3]]))
+    print(minFallingPathSum([[2,1,3],[6,5,4],[7,8,9]]))
     pass

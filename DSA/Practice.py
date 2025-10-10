@@ -2456,23 +2456,60 @@ def sum_n2(n):
 
 
 
-def frogJump(heights):
-    p1,p2 = 0,abs(heights[0]-heights[1])
-    for i in range(2,len(heights)):
-        re = min(p1+abs(heights[i]-heights[i-2]),p2+abs(heights[i]-heights[i-1]))
-        p1 = p2
-        p2 = re
-    return re
+# def frogJump(heights):
+#     p1,p2 = 0,abs(heights[0]-heights[1])
+#     for i in range(2,len(heights)):
+#         re = min(p1+abs(heights[i]-heights[i-2]),p2+abs(heights[i]-heights[i-1]))
+#         p1 = p2
+#         p2 = re
+#     return re
 # print(frogJump([7, 5, 1, 2, 6]))
 
 
-def f():
-    global q
-    t = (10,)
-    q = t + q[1:]
-    return q
-q = (1,2,3)    
-print(q)
-e = f()
+# def f():
+#     global q
+#     t = (10,)
+#     q = t + q[1:]
+#     return q
+# q = (1,2,3)    
+# print(q)
+# e = f()
 
-print(q)
+# print(q)
+# dp = [[-1 for j in range(4)] for i in range(5)]
+# print(dp)
+
+def grid(m,n):
+    dp = [[-1]*n for _ in range(m)]
+
+    # re = 0
+    # def helper(a,b):
+    #     if a == 0 and b == 0:
+    #         return 1
+    #     if a < 0 or b < 0:
+    #         return 0
+    #     if dp[a][b] != -1 : return dp[a][b]
+    #     up = helper(a-1,b)
+    #     left = helper(a,b-1)
+    #     dp[a][b] = up+left
+    #     return  dp[a][b]
+    # return helper(m-1,n-1)
+
+    for i in range(m):
+        for j in range(n):
+            if i == 0 and j == 0:
+                dp[0][0] = 1
+                continue
+            up = 0
+            left = 0
+            if i > 0: up = dp[i-1][j]
+            if j > 0: left = dp[i][j-1]
+            dp[i][j] = up+left
+    return dp[m-1][n-1]
+
+
+print(grid(2,3))
+
+for i in range(10,0,-1):
+    print(i)
+
