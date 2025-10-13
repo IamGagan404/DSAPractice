@@ -298,6 +298,74 @@ def minFallingPathSum(matrix): # LC 931
                 dp[i][j] = min(down,dgl,dgr)
         return min(dp[0])
 
+# DP on sequences
+def subset_sum_k(arr,target):
+    dp = [[0]*(target+1) for _ in range(len(arr))]
+    # print(dp)
+    # def helper(ind,target):
+    #     print(dp)
+    #     if target == 0: return True
+    #     if ind == 0: return target == arr[0]
+    #     if dp[ind][target] != 1: return dp[ind][target]
+    #     not_take = helper(ind-1,target)
+    #     take = False
+    #     if arr[ind] <= target:
+    #         take = helper(ind-1,target-arr[ind])
+    #     dp[ind][target] = not_take or take
+    #     return not_take or take
+    
+    # return helper(len(arr)-1,target)
+
+    for i in range(len(arr)) : dp[i][0] = True
+    dp[0][arr[0]] = True
+
+    for ind in range(1,len(arr)):
+        for t in range(1,target+1):
+            not_take = dp[ind-1][t]
+            take = False
+            if t >= arr[ind]:
+                take = dp[ind-1][t-arr[ind]]
+            dp[ind][t] = not_take or take
+    print(dp)
+    return bool(dp[len(arr)-1][target])
+
+def knapsack(W, val, wt):
+    # code here
+    dp = [[0] * (W+1) for _ in range(len(wt))]
+    # def helper(ind,bg):
+    #     if ind == 0: 
+    #         if wt[0] <= bg: return val[0]
+    #         else: return 0
+    #     if dp[ind][bg] != -1: return dp[ind][bg]
+    #     not_take = helper(ind-1,bg)
+    #     take = -1e9
+    #     if wt[ind] <= bg: take = val[ind] + helper(ind-1,bg-wt[ind])
+    #     dp[ind][bg] = max(take,not_take)
+    #     return dp[ind][bg]
+    # return helper(len(wt)-1,W)
+    
+    
+    # for i in range(wt[0],W+1): dp[0][i] = val[0]
+    # for ind in range(1,len(wt)):
+    #     for bg in range(0,W+1):
+    #         not_take = dp[ind-1][bg]
+    #         take = -1e9
+    #         if wt[ind] <= bg: take = val[ind] + dp[ind-1][bg-wt[ind]]
+    #         dp[ind][bg] = max(take,not_take)
+    # return dp[len(wt)-1][W]
+    
+    prev = [0] * (W+1)
+    for i in range(wt[0],W+1): prev[i] = val[0]
+    for ind in range(1,len(wt)):
+        cur = [0] * (W+1)
+        for bg in range(0,W+1):
+            not_take = prev[bg]
+            take = -1e9
+            if wt[ind] <= bg: take = val[ind] + prev[bg-wt[ind]]
+            cur[bg] = max(take,not_take)
+        prev = cur
+    return prev[W]
+
 
 
 if __name__ == '__main__':
@@ -310,5 +378,7 @@ if __name__ == '__main__':
     # print(ninja_training(nums=[[10, 40, 70],[20, 50, 80],[30, 60, 90]]))
     # print(minimum_path_sum(nums=[[5, 9, 6], [11, 5, 2]]))
     # print(minimumTotal([[2],[3,4],[6,5,7],[4,1,8,3]]))
-    print(minFallingPathSum([[2,1,3],[6,5,4],[7,8,9]]))
+    # print(minFallingPathSum([[2,1,3],[6,5,4],[7,8,9]]))
+    # print(subset_sum_k([1,2,2,3],3))
+    print(knapsack(W = 4, val = [1, 2, 3], wt = [4, 5, 1] ))
     pass
