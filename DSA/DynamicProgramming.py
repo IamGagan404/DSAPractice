@@ -367,6 +367,72 @@ def knapsack(W, val, wt):
     return prev[W]
 
 
+###########
+# DP on strings
+
+# Longest common sudsequence
+def lcs(text1,text2):
+    n = len(text1)
+    m = len(text2)
+    dp = [[-1] * (m+1) for _ in range(n+1) ]
+    # def helper(i,j):
+    #     if i == 0 or j == 0: return 0
+    #     if dp[i][j] != -1: return dp[i][j]
+    #     if text1[i-1] == text2[j-1]:
+    #         dp[i][j] = 1 +  helper(i-1,j-1)
+    #         return dp[i][j]
+    #     dp[i][j] = max(helper(i-1,j),helper(i,j-1))
+    #     return dp[i][j]
+    # return helper(len(text1),len(text2))
+    for i in range(m+1): dp[0][i] = 0
+    for j in range(n+1): dp[j][0] = 0
+
+    for i in range(1,n+1):
+        for j in range(1,m+1):
+            if text1[i-1] == text2[j-1]:
+                dp[i][j] = 1 + dp[i-1][j-1]
+            else:
+                dp[i][j] = max(dp[i-1][j],dp[i][j-1])
+    return dp[n][m]
+
+# for printing lsc dp last row is used, go diagonal if matching else max in up or left refer notes
+# i = n
+# j = m
+# ans = ""
+# while i > 0 and j > 0:
+#     if str1[i-1] == str2[j-1]:
+#         ans.append(str1[i-1])
+#         i -= 1
+#         j -= 1
+#     elif dp[i-1][j] > dp[i][j-1]:
+#         i -= 1
+#     else:
+#         j -= 1
+# return ans[::-1]
+
+
+# longest common substring
+def lc_substring(text1,text2): # intuition from dp table
+    n = len(text1)
+    m = len(text2)
+    dp = [[-1] * (m+1) for _ in range(n+1) ]
+    for i in range(m+1): dp[0][i] = 0
+    for j in range(n+1): dp[j][0] = 0
+    ans = 0
+    for i in range(1,n+1):
+        for j in range(1,m+1):
+            if text1[i-1] == text2[j-1]:
+                dp[i][j] = 1 + dp[i-1][j-1]
+                ans = max(ans,dp[i][j])
+            else:
+                dp[i][j] = 0
+    return ans
+
+# shortest supersubsequesnce: 
+# modification in print lcs tabulation
+# when going up or left: add that char also in ans string
+# in end add chars remaining in the words in ans string
+
 
 if __name__ == '__main__':
     # print(climbing_stairs_bu(5))
@@ -380,5 +446,8 @@ if __name__ == '__main__':
     # print(minimumTotal([[2],[3,4],[6,5,7],[4,1,8,3]]))
     # print(minFallingPathSum([[2,1,3],[6,5,4],[7,8,9]]))
     # print(subset_sum_k([1,2,2,3],3))
-    print(knapsack(W = 4, val = [1, 2, 3], wt = [4, 5, 1] ))
+    # print(knapsack(W = 4, val = [1, 2, 3], wt = [4, 5, 1] ))
+    print(lcs("sea","eat"))
+    # print(lc_substring("abcjklp","acjkp"))
     pass
+
