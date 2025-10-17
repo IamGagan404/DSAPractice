@@ -434,6 +434,20 @@ def lc_substring(text1,text2): # intuition from dp table
 # in end add chars remaining in the words in ans string
 
 
+# string matching pattern
+# 115 distinct subsequences
+def dis_subs(s,t):
+    def helper(i,j):
+        if j < 0: return 1
+        if i < 0: return 0
+        
+        if s[i] == t[j]:
+            return  (helper(i-1,j-1) + helper(i-1,j))   
+        else:
+            return helper(i-1,j)
+    return helper(len(s)-1,len(t)-1)
+
+
 if __name__ == '__main__':
     # print(climbing_stairs_bu(5))
     # print(climbing_stairs_td(5))
@@ -447,7 +461,8 @@ if __name__ == '__main__':
     # print(minFallingPathSum([[2,1,3],[6,5,4],[7,8,9]]))
     # print(subset_sum_k([1,2,2,3],3))
     # print(knapsack(W = 4, val = [1, 2, 3], wt = [4, 5, 1] ))
-    print(lcs("sea","eat"))
+    # print(lcs("sea","eat"))
     # print(lc_substring("abcjklp","acjkp"))
+    print(dis_subs(s = "rabbbit", t = "rabbit"))
     pass
 
