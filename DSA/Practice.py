@@ -2558,7 +2558,86 @@ def sum_n2(n):
 # print("The minimum number of coins required to form the target sum is", minimumElements(arr, T))
 
 
-def maxIncreasingSubarrays(nums):
-    pass
+# def maxIncreasingSubarrays(nums):
+#     pass
 
 
+
+# class ZeroDenominatorError(Exception):
+#     try:
+#         a = 10
+#         b = 0
+#         if(b==0):
+#             raise ZeroDivisionError() 
+#         c = a/b
+#     except ZeroDivisionError:
+#         print('Zero Division Error occured')
+
+# z = ZeroDenominatorError()
+
+
+# class Database:
+#     def _init_db(self, username):
+#         print("Username matched, database connection initialized")
+#         return "Database running.."
+
+#     def _close_db(self, connection_string):
+#         print("Connection string matched, database connection closed")
+
+# class database_context_manager:
+#     def __init__(self, username):
+#         self.username = username
+#         self.db = Database()
+
+#     def __enter__(self):
+#         connection = self.db._init_db(self.username)
+#         print(connection)
+#         return self.db
+
+#     def __exit__(self, exc_type, exc_val, exc_tb):
+#         self.db._close_db("Database running..")
+# username = input().strip()
+
+# with database_context_manager(username):
+#     pass
+
+# import sqlite3
+
+# class sqlite_context_manager():
+#     def __init__(self,file_name):
+#         self.file_name = file_name
+#         self.connection = sqlite3.connect(self.file_name)
+
+#     def __enter__(self):
+#         return self.connection.cursor()
+    
+#     def __exit__(self,exc_type,exc_value,traceback):
+#         self.connection.commit()
+#         self.connection.close()
+# with sqlite_context_manager(file_name="abc.txt") as cursor:
+#     cursor.execute("some sql query")
+
+
+
+def bobsHomework(n: int) -> int:
+    # Write your code here. 123
+    def get_all_perms(nums):
+        if len(nums) == 1:
+            return [nums]
+        perms = []
+        for i in range(len(nums)):
+            cur = nums[i]
+            rem = nums[:i] + nums[i+1:]
+
+            for p in get_all_perms(rem):
+                perms.append(cur + p)
+        return perms
+    perms = [int(x) for x in get_all_perms(str(n))]
+    unique = list(set(perms))
+    unique = sorted(unique)
+    my_index = unique.index(n)  
+    if n == unique[-1]: 
+        return -1
+    else:
+        return unique[my_index+1]
+print(bobsHomework(342))

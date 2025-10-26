@@ -73,7 +73,7 @@ def count_up_to(max):
         count += 1
 
 for number in count_up_to(5):
-    print(number)
+    print(number)   
 
 
 
@@ -260,7 +260,7 @@ print(D.__mro__). # (<class '__main__.D'>, <class '__main__.B'>, <class '__main_
 
 
 Closures
-just functions passed as parametrs, they remeber the envirmonet they were created in. 
+just functions passed as parametrs, they remember the envirmonet they were created in. 
 def make_multiplier(n):
     def multiplier(x):
         return x * n  # remembers 'n' from enclosing scope
@@ -273,7 +273,37 @@ print(times3(10))  # 30
 print(times5(10))  # 50
 
 
+
+iterators vs iterables
+iterable: an object that can be looped over (has __iter__ method). Examples: list, tuple, str.
+Iterator: an object that keeps state and returns the next item on demand (has both __iter__ and __next__ methods).
+lst = [1, 2, 3]       # iterable
+it = iter(lst)        # get iterator from iterable
+print(next(it))       # 1
+print(next(it))       # 2
+print(next(it))       # 3
+# next(it) now → raises StopIteration
     
+Custom context manager!!!!!
+example ok sqlite3
+
+import sqlite3
+
+class sqlite_context_manager():
+    def __init__(self,file_name):
+        self.file_name = file_name
+        self.connection = sqlite3.connect(self.file_name)
+
+    def __enter__(self):
+        return self.connection.cursor()
+    
+    def __exit__(self,exc_type,exc_value,traceback):
+        self.connection.commit()
+        self.connection.close()
+        
+with sqlite_context_manager(file_name="abc.txt") as cursor:
+    cursor.execute("some sql query")
+
 
 
 
