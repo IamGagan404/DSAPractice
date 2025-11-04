@@ -2641,3 +2641,23 @@ def bobsHomework(n: int) -> int:
     else:
         return unique[my_index+1]
 print(bobsHomework(342))
+
+
+def setMatrixOnes(mat):
+
+    rows = []
+    cols = []
+
+    for i in range(len(mat)):
+        for j in range(len(mat[0])):
+            if mat[i][j] == 1:
+                rows.append(i)
+                cols.append(j)
+    print(rows,cols)
+
+    for i in range(len(mat)):
+        for j in range(len(mat[0])):
+            if i in rows or j in cols:
+                mat[i][j] = 1
+    print(mat)
+setMatrixOnes([[1,0],[0,0]])

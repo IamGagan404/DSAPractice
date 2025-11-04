@@ -179,6 +179,12 @@ def new_method(self):
 A.mymethod = new_method  => mymethod is overridden
 
 
+Method                               Purpose                                     When Called                    Common Use
+__new__(cls, *args, **kwargs)        Create & return new instance                Before __init__                Object creation control
+__init__(self, *args, **kwargs)      Initialize object                           After __new__                  Set up attributes
+
+
+
 
 Heapq module
 > popular module to implement priority queue, internally done in typical binary tree with min element as root
