@@ -293,7 +293,36 @@ def restore_ip(s):
 
 
 
+# N-queens
+def myqueens(n):
+    res = []
+    board = [["." for _ in range(n)] for _ in range(n)]
+    print(board)
 
+    def issafe(r,c):
+        for i in range(r):
+            if board[i][c] == "Q":
+                return False
+        for i in range(1,min(r,c)+1):
+            if board[r-i][c-i] == "Q":
+                return False
+        for i in range(1,min(r,n-1-c)+1):
+            if board[r-i][c-i] == "Q":
+                return False
+        return True
+    
+    def helper(row):
+        if row == n:
+            res.append(["".join(r) for r in board])
+            return
+        for c in range(n):
+            if issafe(row,c):
+                board[row][c] = "Q"
+                helper(row+1)
+                board[row][c] = "."
+    helper(0)
+    return res
+print(myqueens(4))
 
 
 

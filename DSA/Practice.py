@@ -2619,45 +2619,192 @@ def sum_n2(n):
 
 
 
-def bobsHomework(n: int) -> int:
-    # Write your code here. 123
-    def get_all_perms(nums):
-        if len(nums) == 1:
-            return [nums]
-        perms = []
-        for i in range(len(nums)):
-            cur = nums[i]
-            rem = nums[:i] + nums[i+1:]
+# def bobsHomework(n: int) -> int:
+#     # Write your code here. 123
+#     def get_all_perms(nums):
+#         if len(nums) == 1:
+#             return [nums]
+#         perms = []
+#         for i in range(len(nums)):
+#             cur = nums[i]
+#             rem = nums[:i] + nums[i+1:]
 
-            for p in get_all_perms(rem):
-                perms.append(cur + p)
-        return perms
-    perms = [int(x) for x in get_all_perms(str(n))]
-    unique = list(set(perms))
-    unique = sorted(unique)
-    my_index = unique.index(n)  
-    if n == unique[-1]: 
-        return -1
-    else:
-        return unique[my_index+1]
-print(bobsHomework(342))
+#             for p in get_all_perms(rem):
+#                 perms.append(cur + p)
+#         return perms
+#     perms = [int(x) for x in get_all_perms(str(n))]
+#     unique = list(set(perms))
+#     unique = sorted(unique)
+#     my_index = unique.index(n)  
+#     if n == unique[-1]: 
+#         return -1
+#     else:
+#         return unique[my_index+1]
+# print(bobsHomework(342))
 
 
-def setMatrixOnes(mat):
+# def setMatrixOnes(mat):
 
-    rows = []
-    cols = []
+#     rows = []
+#     cols = []
 
-    for i in range(len(mat)):
-        for j in range(len(mat[0])):
-            if mat[i][j] == 1:
-                rows.append(i)
-                cols.append(j)
-    print(rows,cols)
+#     for i in range(len(mat)):
+#         for j in range(len(mat[0])):
+#             if mat[i][j] == 1:
+#                 rows.append(i)
+#                 cols.append(j)
+#     print(rows,cols)
 
-    for i in range(len(mat)):
-        for j in range(len(mat[0])):
-            if i in rows or j in cols:
-                mat[i][j] = 1
-    print(mat)
-setMatrixOnes([[1,0],[0,0]])
+#     for i in range(len(mat)):
+#         for j in range(len(mat[0])):
+#             if i in rows or j in cols:
+#                 mat[i][j] = 1
+#     print(mat)
+# setMatrixOnes([[1,0],[0,0]])
+
+
+# def permutaions(nums):
+#     def helper(cur,rem,ans):
+#         if len(cur) == len(nums):
+#             ans.append(cur)
+#             return 
+#         for i in range(len(rem)):
+#             helper(cur + [rem[i]], rem[:i] + rem[i+1:],ans)
+
+#     ans = []
+#     helper([],nums,ans)
+#     return ans
+# print(permutaions([1,2,3]))
+
+# def reOrderSentences(sentences):
+# 	# Write your code here
+#     letter = []
+#     nums = []
+#     for sen in sentences:
+#         print(sen.split(" "))
+#         try:
+#             if type(int(sen.split(" ")[1])) == int :
+#                 nums.append(sen)
+#         except:
+#             letter.append(sen)
+#     print(letter)
+#     print(nums)
+#     letter = [list(x) for x in letter]
+#     letter = sorted([x[1:] + [x[0]] for x in letter])
+#     letter = ["".join([x[-1]] + x[:-1]) for x in letter]
+#     return letter + nums
+# print(reOrderSentences(["d1 2 3", "love8 coding world" ,"a1 coding ninjas"]))
+
+# def knap(strs,m,n):
+#     def helper(ind,m,n):
+#         if ind == 0:
+#             if m > 
+#             return 0
+#         print(ind)
+#         ones = strs[ind].count("1")
+#         zeros = strs[ind].count("0")
+#         pick = helper(ind-1,m-zeros,n-ones) + 1
+#         np = helper(ind-1,m,n)
+
+#         return max(pick,np)
+#     return helper(len(strs)-1,m,n)
+
+
+# def dailyTemperatures(temperatures):
+#     n = len(temperatures)
+#     res = [0] * n
+#     stack = []  # stores indices of unresolved temperatures
+
+#     # Traverse from right to left
+#     for i in range(n - 1, -1, -1):
+#         # Pop all days that are not warmer than today
+#         print("####################")
+#         print(i)
+#         print(stack)
+#         while stack and temperatures[stack[-1]] <= temperatures[i]:
+#             stack.pop()
+
+#         # If stack is not empty, top of stack is the next warmer day
+#         if stack:
+#             res[i] = stack[-1] - i
+#         print("res",res)
+
+#         # Push this day's index for future comparisons
+#         stack.append(i)
+#         print("stack",stack)
+
+#     return res
+# print(dailyTemperatures([73,74,75,71,69,72,76,73]))
+
+
+# def histogram_area(hist):
+#     stack = []
+#     maxArea = 0
+#     n = len(hist)
+
+#     for i in range(n):
+#         print(stack)
+#         if len(stack) == 0:
+#             stack.append(i)
+#         else:
+#             print("hereee",stack[-1])
+#             while stack and hist[stack[-1]] >= hist[i] :
+#                 nse = i
+#                 if len(stack) > 1: pse = stack[-2]
+#                 else: pse = -1
+#                 maxArea = max(maxArea,hist[stack[-1]]*(nse-pse-1))
+#                 stack.pop()
+#             stack.append(i)
+#     print(stack)
+#     # while len(stack) > 1:
+#     #     maxArea = max(maxArea,hist[stack[-1]]*(n-stack[-2]-1))
+#     #     stack.pop()
+#     # if stack:
+#     #     maxArea = max(maxArea,hist[stack[0]]*(n-(-1)-1))
+#     while len(stack) > 1:
+#         height_index = stack[-1]
+#         stack.pop()
+
+#         pse = stack[-1]        # now safe because len > 1
+#         nse = n                # no smaller element on right
+
+#         maxArea = max(maxArea, hist[height_index] * (nse - pse - 1))
+
+#     # --------------------------
+#     # SECOND CLEANUP BLOCK
+#     # --------------------------
+#     if stack:
+#         height_index = stack[0]    # or stack[-1] — here stack has exactly 1 element
+#         pse = -1
+#         nse = n
+#         maxArea = max(maxArea, hist[height_index] * (nse - pse - 1))
+#     return maxArea
+# print(histogram_area([1,2,2]))
+            
+
+import datetime
+
+def timer(func):
+    def wrapper(*args,**kwargs):
+        start_time = datetime.datetime.now()
+        re = func(*args,**kwargs)
+        print("Function took ",datetime.datetime.now()-start_time, "seconds")
+    return wrapper
+
+@timer
+def core_func(n):
+    for i in range(n):
+        time.sleep(1)
+        print(i)
+# core_func(3)
+
+l = [(1,2),(2,3),(4,5)]
+l[0] = (6,7)
+print(l)
+f = (7,7)
+f = (6,)+ f[1:]
+print(f)
+
+
+
+
