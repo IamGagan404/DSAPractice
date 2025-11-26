@@ -43,16 +43,16 @@ def make_ll(nums):
 
 def reverse_ll(head):
     prev = None
-    pres = head
+    cur = head
     if head.next:
         fut = head.next
     while fut:
-        pres.next = prev
-        pres = fut
-        prev = pres
+        cur.next = prev
+        cur = fut
+        prev = cur
         if fut.next:
             fut = fut.next
-    return pres
+    return cur
 # print_ll(reverse_ll(head))
 
 #################### Striver's Linked List Series ##############################

@@ -2782,29 +2782,153 @@ def sum_n2(n):
 # print(histogram_area([1,2,2]))
             
 
-import datetime
+# import datetime
 
-def timer(func):
-    def wrapper(*args,**kwargs):
-        start_time = datetime.datetime.now()
-        re = func(*args,**kwargs)
-        print("Function took ",datetime.datetime.now()-start_time, "seconds")
-    return wrapper
+# def timer(func):
+#     def wrapper(*args,**kwargs):
+#         start_time = datetime.datetime.now()
+#         re = func(*args,**kwargs)
+#         print("Function took ",datetime.datetime.now()-start_time, "seconds")
+#     return wrapper
 
-@timer
-def core_func(n):
-    for i in range(n):
-        time.sleep(1)
-        print(i)
+# @timer
+# def core_func(n):
+#     for i in range(n):
+#         time.sleep(1)
+#         print(i)
 # core_func(3)
 
-l = [(1,2),(2,3),(4,5)]
-l[0] = (6,7)
-print(l)
-f = (7,7)
-f = (6,)+ f[1:]
-print(f)
+# l = [(1,2),(2,3),(4,5)]
+# l[0] = (6,7)
+# print(l)
+# f = (7,7)
+# f = (6,)+ f[1:]
+# print(f)
+
+# def lcs(s,t):
+#     n = len(s)
+#     m = len(t)
+#     dp = [[-1]* (m+1) for _ in range(n+1)]
+    
+#     def helper(i,j):
+#         if i < 0 or j < 0:
+#             return 0
+#         if dp[i][j] != -1: return dp[i][j]
+#         if s[i] == t[j]:
+#             return helper(i-1,j-1) + 1
+#         dp[i][j] = max(helper(i-1,j),helper(i,j-1))
+#         return dp[i][j]
+#     return helper(len(s)-1,len(t)-1)
+# print(lcs("wqqq","w"))
+
+# def move_zeros(nums):
+#     for i in range(len(nums)):
+#         if nums[i] == 0:
+#             z = i
+#             break
+#     for i in range(len(nums)):
+#         if nums[i] != 0:
+#             n = i
+#             break
+#     while n < len(nums):
+#         print(z,n,nums)
+#         if nums[n] == 0:
+#             n += 1
+#         else:
+#             nums[z],nums[n] = nums[n],nums[z]
+#             n += 1
+#             z += 1
+#     return nums
+# print(move_zeros([16601,78714,11653,-45162,0,-22859,0,36007,19143,-91750,0,-45361,-10715,46528,-91518,-36985,59578,76628,-87592,89803,0,-41430,44290,59831,41824,-30916,-6521,61614,46035,39346,0,0,32417]))
+
+# def permutations(nums):
+#     def helper(perm,i):
+#         if i == len(nums):
+#             all.append(perm)
+#             return
+#         for j in range(len(perm)+1):
+#             helper(perm[:j]+[nums[i]]+perm[j:],i+1)
+#     all = []
+#     helper([],0)
+#     return all
+# print(permutations([1,2,3]))
+
+# g = "l"
+# d = ["l"]
+# print(g is d[0], g == d[0])
+def knapsack(W,val,wt):
+    def helper(ind,remBag):
+
+        if ind == 0:
+            if wt[0] <= remBag:
+                return val[0]
+            else:
+                return 0
+        np = helper(ind-1,remBag)
+        p = -int(1e9)
+        if wt[ind] <= remBag:
+            p = val[ind] + helper(ind-1,remBag-wt[ind])
+        return max(np,p)
+    return helper(len(val)-1,W)   
+print(knapsack(W = 3, val = [1, 2, 3], wt = [4, 5, 6] ))
+
+# # list of nums -> amx freq
 
 
+# def string_dec(func):
+#     def wrapper(*args,**kwargs):
+#         result = func(*args,**kwargs)
+#         return_string = "The output of the function is " + str(result)
+#         return return_string
+#     return wrapper
 
+
+# @string_dec
+# def get_max_freq(nums):
+#     freq = {}
+
+#     for i in range(len(nums)):
+#         freq[nums[i]] = 1 + freq.get(nums[i],0)
+#     # print(freq)
+#     min_freq = max(freq.values())
+#     max_element = [] # list having max freq elements
+
+
+#     max_freq_ele_list = {}
+
+#     for k,v in freq.items():
+#         if v == min_freq:
+#             max_element.append(k)
+
+#     for i in range(len(nums)):
+#         if nums[i] in max_element:
+#             max_freq_ele_list[nums[i]]  = 1 + max_freq_ele_list.get(nums[i],0)
+#             if max_freq_ele_list[nums[i]] == min_freq:
+#                 return nums[i]
+#     return max_element
+# print(get_max_freq([1,1,1,2,2,2,3,5]))
+
+
+# def most_frequent(nums):
+#     freq = {}
+#     max_freq = 0
+#     result = None
+    
+#     for num in nums:
+#         freq[num] = freq.get(num, 0) + 1
+        
+#         # If current element's frequency is higher, update result
+#         if freq[num] > max_freq:
+#             max_freq = freq[num]
+#             result = num
+#         # If equal frequency, do nothing — earlier achiever keeps priority
+#     return result
+
+# # Example
+# nums = [1, 1,1, 2, 2, 2, 3, 5]
+# print(most_frequent(nums))  # Output: 2
+
+
+# d = {1:3,2:5,3:1}
+# print(k for k,v in d.items() if v == max(d.values()))
 

@@ -47,7 +47,7 @@ def binary_search_first(nums,target,findfirst):
 # print(binary_search_first([1,2,3,3,3,4,5,5,5,6,9,10],5,False))
 
 def binary_search_lower_bound(nums,k):
-    # find the smallest index lesser or equal to k arr[ind] >= k
+    # find the smallest index greater or equal to k arr[ind] >= k
     l,h = 0, len(nums)-1
     ans = len(nums)
 
