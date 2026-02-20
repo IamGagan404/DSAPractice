@@ -99,6 +99,35 @@ def count_up_to(max):
 for number in count_up_to(5):
     print(number)   
 
+def add_item(item, lst=[]):
+    lst.append(item)
+    return lst
+
+print(add_item(1)) #[1]
+print(add_item(2)) #[1,2]
+
+
+defult arguments are evluated at function defination not at run time. Hence that empty list will be reused at every function call.
+FIX:
+
+def add_item(item,lst=None):
+	if lst is None:
+		lst = []
+	lst.append(item)
+	return lst
+
+None is immutabel hence created new every function call
+
+
+a = [1, 2, 3]
+b = a
+a = a + [4]
+
+print(a)  [1,2,3,4]
+print(b)  [1,2,3]
+
+at first a lsit is created and both a and b point to same list
+at line 3 new list is created and only a points to it, a.append(4) would have still pointed to same list not created new one. 
 
 
 
