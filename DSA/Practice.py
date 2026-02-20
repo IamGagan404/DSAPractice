@@ -2856,21 +2856,21 @@ def sum_n2(n):
 # g = "l"
 # d = ["l"]
 # print(g is d[0], g == d[0])
-def knapsack(W,val,wt):
-    def helper(ind,remBag):
+# def knapsack(W,val,wt):
+#     def helper(ind,remBag):
 
-        if ind == 0:
-            if wt[0] <= remBag:
-                return val[0]
-            else:
-                return 0
-        np = helper(ind-1,remBag)
-        p = -int(1e9)
-        if wt[ind] <= remBag:
-            p = val[ind] + helper(ind-1,remBag-wt[ind])
-        return max(np,p)
-    return helper(len(val)-1,W)   
-print(knapsack(W = 3, val = [1, 2, 3], wt = [4, 5, 6] ))
+#         if ind == 0:
+#             if wt[0] <= remBag:
+#                 return val[0]
+#             else:
+#                 return 0
+#         np = helper(ind-1,remBag)
+#         p = -int(1e9)
+#         if wt[ind] <= remBag:
+#             p = val[ind] + helper(ind-1,remBag-wt[ind])
+#         return max(np,p)
+#     return helper(len(val)-1,W)   
+# print(knapsack(W = 3, val = [1, 2, 3], wt = [4, 5, 6] ))
 
 # # list of nums -> amx freq
 
@@ -2931,4 +2931,8 @@ print(knapsack(W = 3, val = [1, 2, 3], wt = [4, 5, 6] ))
 
 # d = {1:3,2:5,3:1}
 # print(k for k,v in d.items() if v == max(d.values()))
+
+        
+
+
 
