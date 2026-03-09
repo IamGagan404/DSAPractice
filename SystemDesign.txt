@@ -1,0 +1,62 @@
+
+=> Vertical vs Horizontal Scaling
+=> Capacity Estimation
+=> HTTP vs HTTPS
+	HTTP: content without encryption, simple request response cycle. Operates on port 80 by default. Not suitable fpr sensitve data
+	HTTPS: HTTP with encryption layer using SSL/TCL certificates. Only person with right key can read the data. 
+		   Operates on port 443 by default. preferred by browser for SEO. 
+	
+			Aspect									HTTP														HTTPS
+	Full Form							HyperText Transfer Protocol									HyperText Transfer Protocol Secure
+	Port Number								Uses port 80													Uses port 443
+	Security						No encryption; data is plain text									Encrypted using SSL/TLS
+	Analogy							Like a postcard anyone can read								Like a sealed envelope only the receiver can open
+	User Trust						Browsers may show “Not Secure” warning								Shows a padlock icon in the browser
+	Performance						Works with HTTP/1.1 (basic speed)								Supports HTTP/2 for faster loading
+	SEO Ranking							No ranking advantage										Gets a boost in search engine ranking
+	Use Case					Non-sensitive websites like blogs or news pages					Banking, e-commerce, login portals, any sensitive data transfer
+=> TCP/IP Protocol
+	Application,Transport,Network,Data Link,Physical
+=> TCP - Transmission Control Protocol
+	Used to deliver static pages like wikipedia or email services. Content sent in small packets, with each packet confirmation is sent back. 
+	Tends to be slower. Downloading content is continued even if connection is interrupted.
+=> UDP - User Datagram Protocol
+	Used for live stream, video games. Does not send confirmation packets, only data. Packets dropped during connection interuption will be lost.
+
+=> Load balancing:
+    Distributing load as uniformly as possible among multiple servers, without getting too much load on 
+    single server. Hash functions are used to distribute requests. Eg. Using request ID % number of servers
+    This simple load balancing is useful for small number of servers. Adding another server causes change
+    in almost all of the search space, also does not account for server getting down. Here consistent hashing
+    come into the picture.
+
+=> Consistent Hashing:
+    Say we have ring of servers and requests between them. Simple algo tells that request should be 
+    processed by server next to them clockwise. We hash the requests using hash functions, which randomly
+    allocates the request into the ring. Even addition of new server will not affect the whole search space
+    Say a server goes down, this case causes a single server to take on load of two servers in theory.
+    To counter this we place virtual servers in the ring with multiple hash functions. Each of the server 
+    will now have "k" places in the ring. So any server goes down load should be uniformly distributed.
+    Ideal number of hash functions "k" is log(n).
+
+=> Message Queue:
+    A kind of list which stores tasks that are to be done. It assigns task to a server if server is taking
+    too long to respond, assumes that server is dead and assigns to another server. Eliminates duplications
+    of tasks. A heartbeat mechanism, for every say 15 seconds notifier sends request to each of the server
+    if no response is getting back it means server is dead.
+
+=> Monolith vs Microservice:
+    Monolith, a single system serving all clients. This system doesn't need to be a single machine,
+    it can be scaled horizontally. Good for small teams, faster as there no external calls all calls
+    are internal, lesser duplication of code, easier to develop. More context is required for devs,
+    deployments are more complex as everything may fall, single point of failure. StackOverflow uses this.
+
+    Microservice, easier to scale, parallel development is possible, loose coupling,
+    easier to deploy as lesser hidden code. A good indicator to see if a microservice should not be a 
+    microservice is to see if it is talking to a single service, maybe we can couple them together.
+    Needs skilled architects.
+
+
+
+
+

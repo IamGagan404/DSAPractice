@@ -1,0 +1,21 @@
+NOTES FOR KUBERNETES
+
+KUBERNETES: Open-source container orchestration service developed by Google. Used to automate scaling,
+        deployment and management of applications spread across cluster of machines. Increases system
+        reliablity. Eleminated manual handling of hundreades of containers. Features include rollbacks
+        rolling updates, self-healing,load balancing etc
+
+
+
+
+POD: Pod is smallest deployable unit and contains one or more containers that share network namespace, 
+    IP address, storage volumes etc. 
+ReplicaSets: maintains number of replicas of identical pods are running. automatically Creates
+        pods to maintain desired count.
+Deployment: Higher level controller that controls ReplicaSets. Allows declarative updates to applications
+        rolling updates,rollback etc. Real world systems use this.
+
+
+
+
+

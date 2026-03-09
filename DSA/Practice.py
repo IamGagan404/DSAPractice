@@ -2932,7 +2932,23 @@ def sum_n2(n):
 # d = {1:3,2:5,3:1}
 # print(k for k,v in d.items() if v == max(d.values()))
 
-        
+# 955 Delete Columns to Make Sorted II
+def delete_cols(strs):
+    def check_sorted(strs):
+        sorted_strs = sorted(strs)
+        for i in range(len(strs)):
+            if strs[i] != sorted_strs[i]:
+                return 0
+        return 1
+    re = 0
+    while check_sorted(strs) == 0:
+        for i in range(len(strs)):
+            strs[i] = strs[i][:]
+
+
+
+
+  
 
 
 
