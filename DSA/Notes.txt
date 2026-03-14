@@ -270,7 +270,7 @@ Heapq module
 
 
 Union Find Data Structure
-Useful when find equivalent relations between a set pf groups
+Useful when find equivalent relations between a set of groups
 
 # count number of class instances created
 # custom context manager
