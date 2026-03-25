@@ -2933,17 +2933,53 @@ def sum_n2(n):
 # print(k for k,v in d.items() if v == max(d.values()))
 
 # 955 Delete Columns to Make Sorted II
-def delete_cols(strs):
-    def check_sorted(strs):
-        sorted_strs = sorted(strs)
-        for i in range(len(strs)):
-            if strs[i] != sorted_strs[i]:
-                return 0
-        return 1
-    re = 0
-    while check_sorted(strs) == 0:
-        for i in range(len(strs)):
-            strs[i] = strs[i][:]
+# def delete_cols(strs):
+#     def check_sorted(strs):
+#         sorted_strs = sorted(strs)
+#         for i in range(len(strs)):
+#             if strs[i] != sorted_strs[i]:
+#                 return 0
+#         return 1
+#     re = 0
+#     while check_sorted(strs) == 0:
+#         for i in range(len(strs)):
+#             strs[i] = strs[i][:]
+            
+# 3567. Minimum Absolute Difference in Sliding Submatrix
+def min_ab_diff(matrix,k):
+    re = []
+    m,n = len(matrix),len(matrix[0]) # 2,3
+    print(m,n)
+    def get_diff(mat):
+        if len(mat) == 1 and len(mat[0]) == 1:return 0
+        line = []
+        for row in mat:
+            line = line + row
+        line= sorted(line)
+        min_diff = 1e9
+        for i in range(len(line)-1):
+            if line[i+1] != line[i]:
+                min_diff = min(min_diff,line[i+1]-line[i])
+        return min_diff
+    for i in range(m):
+        for j in range(n):
+            if i+k <= m and j+k <= n:
+                mat = []
+                for x in range(k):
+                    print(i+x)
+                    row = matrix[i+x][j:j+k]
+                    mat.append(row)
+                print(mat)
+                min_diff = get_diff(mat)
+                re.append(min_diff)
+        return(re)
+print(min_ab_diff([[81274],[52541]], k = 1))
+                    
+
+
+
+
+
 
 
 

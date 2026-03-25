@@ -2,7 +2,7 @@
 => Vertical vs Horizontal Scaling
 => Capacity Estimation
 => HTTP vs HTTPS
-	HTTP: content without encryption, simple request response cycle. Operates on port 80 by default. Not suitable fpr sensitve data
+	HTTP: content without encryption, simple request response cycle. Operates on port 80 by default. Not suitable for sensitive data
 	HTTPS: HTTP with encryption layer using SSL/TCL certificates. Only person with right key can read the data. 
 		   Operates on port 443 by default. preferred by browser for SEO. 
 	
@@ -21,7 +21,7 @@
 	Used to deliver static pages like wikipedia or email services. Content sent in small packets, with each packet confirmation is sent back. 
 	Tends to be slower. Downloading content is continued even if connection is interrupted.
 => UDP - User Datagram Protocol
-	Used for live stream, video games. Does not send confirmation packets, only data. Packets dropped during connection interuption will be lost.
+	Used for live stream, video games. Does not send confirmation packets, only data. Packets dropped during connection interruption will be lost.
 
 => Load balancing:
     Distributing load as uniformly as possible among multiple servers, without getting too much load on 
@@ -55,6 +55,33 @@
     easier to deploy as lesser hidden code. A good indicator to see if a microservice should not be a 
     microservice is to see if it is talking to a single service, maybe we can couple them together.
     Needs skilled architects.
+
+=> Sharding
+    Horizontal Partition: One key to divide data
+    Problems: Joins across shards, query having to join shards get expensive, 
+              requires consistent hashing for dynamic number of server
+    Hierarchical sharding: Mini shards inside a shard
+    Index on shards: indexing inside a shard.  
+    Master slave architecture. Write requests to master(most updated copy). 
+    Reads go to slave which copy master server periodically. 
+
+=> Caching
+    Reduces latency by using more storage. Grouping similar users into a cohort and store the data in cache.
+    Write Policy: LRU,LFU, When a update is there how do u manage it
+    Overflow Policy: What data to be kicked in case of overflow
+    Thrashing: Poor hit rate on cache, more often data is missing in cache, increases latency
+    Eventual Consistency: Cache gets updated after some time, cache may contain stale entries.
+    Location of cache: In memory(on each server), On database, global cache(separate cache server)
+    
+=> Single point of failure
+    Entire system fails to one point/node. 
+    Get more nodes,database,multiple load balancers/gateway, ip addresses resolving to same gateway.
+
+=> Content Delivery Network(CDN)
+    Global latency. Distribute cache across the globe according to relevance. 
+
+=> Pub/Sub Model
+    
 
 
 
