@@ -2946,38 +2946,57 @@ def sum_n2(n):
 #             strs[i] = strs[i][:]
             
 # 3567. Minimum Absolute Difference in Sliding Submatrix
-def min_ab_diff(matrix,k):
-    re = []
-    m,n = len(matrix),len(matrix[0]) # 2,3
-    print(m,n)
-    def get_diff(mat):
-        if len(mat) == 1 and len(mat[0]) == 1:return 0
-        line = []
-        for row in mat:
-            line = line + row
-        line= sorted(line)
-        min_diff = 1e9
-        for i in range(len(line)-1):
-            if line[i+1] != line[i]:
-                min_diff = min(min_diff,line[i+1]-line[i])
-        return min_diff
-    for i in range(m):
-        for j in range(n):
-            if i+k <= m and j+k <= n:
-                mat = []
-                for x in range(k):
-                    print(i+x)
-                    row = matrix[i+x][j:j+k]
-                    mat.append(row)
-                print(mat)
-                min_diff = get_diff(mat)
-                re.append(min_diff)
-        return(re)
-print(min_ab_diff([[81274],[52541]], k = 1))
+# def min_ab_diff(matrix,k):
+#     re = []
+#     m,n = len(matrix),len(matrix[0]) # 2,3
+#     print(m,n)
+#     def get_diff(mat):
+#         if len(mat) == 1 and len(mat[0]) == 1:return 0
+#         line = []
+#         for row in mat:
+#             line = line + row
+#         line= sorted(line)
+#         min_diff = 1e9
+#         for i in range(len(line)-1):
+#             if line[i+1] != line[i]:
+#                 min_diff = min(min_diff,line[i+1]-line[i])
+#         return min_diff
+#     for i in range(m):
+#         for j in range(n):
+#             if i+k <= m and j+k <= n:
+#                 mat = []
+#                 for x in range(k):
+#                     print(i+x)
+#                     row = matrix[i+x][j:j+k]
+#                     mat.append(row)
+#                 print(mat)
+#                 min_diff = get_diff(mat)
+#                 re.append(min_diff)
+#         return(re)
+# print(min_ab_diff([[81274],[52541]], k = 1))
                     
 
 
+# 741 Cherry pickup
+def cherry(grid):
+    max_cherry = 0
+    n = len(grid)
+    def backtrack(i,j,cur):
+        if i == n or j == n:
+            return cur
+        elif grid[i][j] == -1:
+            return 0
+        else:
+            down_res = backtrack(i,j+1,cur+grid[i][j])
+            left_res = backtrack(i+1,j,cur+grid[i][j])
+            grid[i][j] = 0
+            return max(down_res,left_res)
+    print(grid)
+    return backtrack(0,0,grid[0][0])
+print(cherry([[0,1,-1],[1,0,-1],[1,1,1]]))
 
+
+    
 
 
 
