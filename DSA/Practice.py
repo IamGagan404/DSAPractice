@@ -2932,6 +2932,34 @@ def sum_n2(n):
 # d = {1:3,2:5,3:1}
 # print(k for k,v in d.items() if v == max(d.values()))
 
+def getHappyString(n,k):
+    re = []
+    chars = ['a','b','c']
+    def helper(cur):
+        if len(cur) == n:
+            re.append(cur)
+            return
+        if len(cur) == 0:
+            helper('a')
+            helper('b')
+            helper('c')
+        else:
+            for i in range(3):
+                if cur[-1] == chars[i]:
+                    continue
+                else:
+                    helper(cur+chars[i])
+    helper('')
+    print(re)
+    return re[k-1] if k <= len(re) else ""
+print(getHappyString(3,9))
+
+
+
+
+
+
+
 # 955 Delete Columns to Make Sorted II
 # def delete_cols(strs):
 #     def check_sorted(strs):
