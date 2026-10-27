@@ -110,6 +110,32 @@ def rep_mis(nums):
 
 print(rep_mis([1,2,2,3,5]))
 
+# Book allocation problem
+def findPages(self, arr, k):
+        # code here
+        if len(arr) < k: return -1
+        l = max(arr)
+        h = sum(arr)
+        def checker(nums,maxPages):
+            stu = 1
+            stuPages = 0
+            for i in range(len(nums)):
+                if stuPages + nums[i] <= maxPages:
+                    stuPages += nums[i]
+                else:
+                    stu += 1
+                    stuPages = nums[i]
+            return stu
+        
+        while l <= h:
+            mid = (l+h) // 2
+            stu = checker(arr,mid)
+            if stu > k:
+                l = mid + 1
+            else:
+                h = mid - 1
+        return l
+
 
 
 

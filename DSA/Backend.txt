@@ -1,0 +1,72 @@
+DJANGO
+
+=> typical request response cycle
+request recived in WSGI server -> converted to HttpRequest Object -> Middleware -> URL resolution extract paraemeter
+View business logic -> HttpResponse objet -> reverse Middleware exception handling -> Http raw back to client
+
+=> select_related                                               prefetch_related
+
+forward relationships(Foreign key, 1-1)                     reverse forward relationships(rev ForeignKey, M-M)   
+SQL join in one query                                       separate query for related models 
+                                                            Joinied in python using IN clouse
+Book.objects.select_related('Author').all()                 Auther.obejcts.prefetch_relaetd('Book').all()
+
+=> makemigration and migrate
+makemigration -> doesnt touch databse, comapres model.py(current) against last recorded state 
+                  and creates list of operation like CtreateModel, AddField etc laong with Dependencies
+migrate -> keeps track of which miga=rations already applied, when fired changes database according all
+            migration yet to be applied in depency order
+conflict -> 2 devs create migrations, tree is maintained to recored that, when migrate is fired raises error
+            python manage.py makemigration --merge will resolve or manually have to edit dependency lsit
+        
+=> How djnago generates query under the hood
+django chains functions like .filter() ,.exclude() etc. Bulds up Query object. During evaluation db is hit to get results. They are lazy in this sense. .explain() is used for query N+1 problems is when django crates query but additional data from other table is also required hence djnago creates query for each of them(when lopped over) resulting in larger number of queries than required. Debug toolbar. 
+
+
+=>Django vs fastapi
+WSGI(configurable)              vs              ASGI
+structured                      vs              unstructured
+admin panal                     vs 
+                                vs              auto gen swagger docs
+own ORM                         vs              custom ORM(sqlalchemy)
+CBV(auto template) forms        
+serialization                   vs              pydantic models
+content heavy, auth, CRUD                       fast microservice, high throughput, ML model serving
+less users                                      
+
+
+
+
+FASTAPI
+
+=> dependency injection
+lets you declare reusable logic(db session auth etc) as separate function and fastapi automatically calls
+it before the endpoint. Everything before yield get called before endpoint and after yield after result is generated. 
+
+def get_db():
+    db = session()
+        try:
+            yield db
+        finally:
+            db.close()
+
+@app.get('/products')
+def get_products(db : Session = Depends(get_db))
+    products = db.query()
+    return products
+
+
+Pydentic
+data validation module, request model for incoming, response for outgoing - extra fields will be ommitted
+designed for security, optional fields, nested models
+Async await
+
+=> Explain the difference between async def and regular def endpoints in FastAPI, and what happens if you accidentally put blocking (synchronous) code — like a blocking DB call or time.sleep() — inside an async def endpoint.
+
+async functions run on main event loop and await for non blocking ops and give control backt ot main event loop. sync function are run separtely in threadpool run_in_threadpool() hence dont block main event loop
+if aysnc fun uses blocking func then it will block main event loop. 
+
+
+
+
+

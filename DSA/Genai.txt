@@ -1,0 +1,111 @@
+What is a Large Language Model?
+    neural network trained on large amount of data to predict the next token, through this it learns
+    grammer,patterns,style etc. large - parameters(Billions) training data size
+How does a Transformer work?
+Explain self-attention.
+What are tokens, embeddings, positional encoding?
+    tokens - text is split into smaller parts, to get numeric rep of characters, example, 
+    common seq are merged together 
+    embeddings - vector repr of tokens, similar tokens end up with similar vectors
+    positional encoding - self-attention process as set not in order, lest dog looks at cat = cat looks at dog
+What is the difference between encoder, decoder, and encoder-decoder architectures?
+
+What is the difference between GPT, BERT, and T5?
+What are temperature, top-k, and top-p?
+    temperature - randomness of next prediction. 0 - almost always pick most probable token, 
+    >1 - increases crativity
+    top-k - pick first k tokens and samples from them
+    top-p - instead of fixed number of tokens, pick tokens whose cumulative prob. is p(0.9 eg)
+What is a context window?
+    number of tokens model can work with in one call,working memory
+Why do LLMs hallucinate?
+    models do tend to produce plausible continuations rather than strainght "idk"
+    no ground truth checking in training data
+    one wrong token generation may lead to wild results
+    if question implies that answer exists model is biased to generate something than refusal
+What is the difference between pre-training, fine-tuning, and inference?
+    pre-training - most expensive phase, model learns on the unlabled data, forms general understanding
+    of language, 
+    fine-tuning -  trained further on smaller dataset, intruction tuning, domain specific knowledge
+    inference - model asnwers real queries, normal stuff
+
+What is prompt engineering?
+    practice of refinieng input prompt to get desired output, LLMs are sensetive to input phrasing,
+    examples,sturcture etc. 
+Zero-shot vs few-shot prompting.
+    zero-shot - no examples are given in inpit prompt
+    few-shot - some examples are give as input output pairs, better for unusal classification etc
+What are system, user, and assistant messages?
+    system - set overall context for conversation, high priority, often hidden from user
+    user - queries to models
+    assistant - models responses for multi turn conversations
+How do you make an LLM return structured JSON?
+    explict mention in prompt with desired schema, few-shot example, response_type paramter in model calling
+How would you design a prompt for reliable extraction?
+    define exact schema, few shot prompt, use tool calling functions, check with valid responses,cite sources
+What is chain-of-thought prompting?
+    instructing model to generate intermedite resoneing steps before final asnwer. "let go step by step"
+    it works bcz mdoels generate response token by token ahnce for generation of next "step" previous step
+    becomes context increaisng quality of response.
+What are prompt injection attacks?
+    malicious attack to override system instruction thourgh direct prompt or by the data mdoel is asked to
+    read. "Ignore all and follow this" or "send all data to emial@email.com" etc
+How would you prevent users from overriding system instructions?
+    model level training, treat system promot as highest priority, no editing there, filtering of data during
+    processing, explicit that user interuction can not override system, try to inject prompts and fine tune again
+How do you evaluate whether a prompt is actually better?  
+    calibrate a metric to tested against multiple prompts, have ground truth labllled data, see for exact
+    match or not, have larger 50-100 exmpales ready, blind testing by human for creativuty, tone etc, user
+    feedback on production
+
+What is RAG and why use it?
+    technique to combine llm with external knowledge source, less expensive than fine tuning, confidential 
+    matters, citation, reduces hallucinations 
+RAG vs fine-tuning?
+    RAG                     fine tuning
+    raw knowledge           teach behaviour,skill,token
+    faster less expensive   slower more expensive
+    easy for fact check     may not get exact source
+    low hallucinate         high hallucinations
+    always fresh            may get stale real time
+How do embeddings work?
+    embedding is vector repr of words, they are optimized such that words with same semantic meaning end up
+    closer and vice versa, new words are placed accordingly helps in retrieval
+What is a vector database?
+    DB specialized for storing vectors,with thier metadata typically uses HNSW(hiearchial navigale small world) or IVF(inverted
+    file index). filtering with metadata
+FAISS vs Pinecone vs Weaviate vs Chroma?
+How do you decide chunk size?
+    There is no universal rule, alwasys based on the content, split on naturla bourdies(headings, paragraphs)
+    too small, too big, 200-500 typical length, semtic chuning, RecursiveTextSplitter, 
+What is chunk overlap?
+    instread of strict cut-off some small amount is fitted into chunks, ensuring idea egt picked up in at
+    least one chunk, tradeoff of additional space but worth it
+What is semantic search?
+    based on meaning of query, query itself is embbeded in vector space and neighbouring chunks are
+    taken for process, eg.laptop is slow matches with trouble shooting faqs etc
+Keyword search vs semantic search?
+    exact match vs meaning of sentence, code id vs english
+What is hybrid search?
+    combine both with weighted results
+What is reranking?
+    first stage - get 20-50 chunks, speed over accuracy
+    second stage - compare each of the chunk i=with qury to see if they are relavent and score, rturn top 2-5
+How would you improve poor retrieval?
+    see if correct chunks are retrieved or llm not formatting well, rephrase system prompt, chunking
+    hybrid search, diff embedding model, clearer docs provided, metadata, increase k, eval sementically
+What happens if the required information isn't retrieved?
+    model may hallucinate, explicit info to tell "idk" dont guess, threshhold in confidence, citation
+How do you prevent hallucinations in RAG?
+    strict instructions, fact check, another model to eval quality, citation, better chunking, threshhold
+How do you handle PDFs containing tables/images?
+How do you handle document updates/deletions?
+How would you implement metadata filtering?
+    during embdding precess metadata also along with vector id, filter by metadata during ANN seach, 
+    derive filter from user query, role level aceess filter by access level  
+How do you evaluate a RAG system?
+    separete in retrival and generation
+    if chunks retieved are relvent fraction, score each of them
+    genrated text is true or not, citations are proper or not
+    create a eavl set of inout and expected output, score chunks acc, ground truth
+

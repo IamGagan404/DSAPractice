@@ -39,21 +39,20 @@ def make_ll(nums):
     return nums[0]
 
 
-# head = make_ll([1,2,3,4,5])
+head = make_ll([1,2,3,4,5])
 
 def reverse_ll(head):
-    prev = None
     cur = head
-    if head.next:
-        fut = head.next
-    while fut:
+    prev = None
+    fut = head.next
+
+    while cur:
         cur.next = prev
-        cur = fut
         prev = cur
-        if fut.next:
-            fut = fut.next
-    return cur
-# print_ll(reverse_ll(head))
+        cur = fut
+        if fut: fut = fut.next
+    return prev
+print_ll(reverse_ll(head))
 
 #################### Striver's Linked List Series ##############################
 # Given the head of a linked list, print the length of the linked list.
@@ -139,9 +138,9 @@ def addTwoNumbers2(l1,l2):
     return dummy.next
 
 #
-l1 = make_ll([5,4])
-l2 = make_ll([4])
-print_ll(addTwoNumbers2(l1,l2))
+# l1 = make_ll([5,4])
+# l2 = make_ll([4])
+# print_ll(addTwoNumbers2(l1,l2))
 
 
 # 328. Odd Even Linked List
@@ -217,8 +216,12 @@ def reverse_k_grps(head,k):
         prev = temp
         temp = nextnode
     return head
-head = make_ll([1,2,3,4,5,6,7,8,9,10])
-print_ll(reverse_k_grps(head,3))
+# head = make_ll([1,2,3,4,5,6,7,8,9,10])
+# print_ll(reverse_k_grps(head,3))
+
+
+
+
 
 
 

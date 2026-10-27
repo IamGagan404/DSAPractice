@@ -2932,27 +2932,27 @@ def sum_n2(n):
 # d = {1:3,2:5,3:1}
 # print(k for k,v in d.items() if v == max(d.values()))
 
-def getHappyString(n,k):
-    re = []
-    chars = ['a','b','c']
-    def helper(cur):
-        if len(cur) == n:
-            re.append(cur)
-            return
-        if len(cur) == 0:
-            helper('a')
-            helper('b')
-            helper('c')
-        else:
-            for i in range(3):
-                if cur[-1] == chars[i]:
-                    continue
-                else:
-                    helper(cur+chars[i])
-    helper('')
-    print(re)
-    return re[k-1] if k <= len(re) else ""
-print(getHappyString(3,9))
+# def getHappyString(n,k):
+#     re = []
+#     chars = ['a','b','c']
+#     def helper(cur):
+#         if len(cur) == n:
+#             re.append(cur)
+#             return
+#         if len(cur) == 0:
+#             helper('a')
+#             helper('b')
+#             helper('c')
+#         else:
+#             for i in range(3):
+#                 if cur[-1] == chars[i]:
+#                     continue
+#                 else:
+#                     helper(cur+chars[i])
+#     helper('')
+#     print(re)
+#     return re[k-1] if k <= len(re) else ""
+# print(getHappyString(3,9))
 
 
 
@@ -3006,32 +3006,1202 @@ print(getHappyString(3,9))
 
 
 # 741 Cherry pickup
-def cherry(grid):
-    max_cherry = 0
-    n = len(grid)
-    def backtrack(i,j,cur):
-        if i == n or j == n:
-            return cur
-        elif grid[i][j] == -1:
-            return 0
-        else:
-            down_res = backtrack(i,j+1,cur+grid[i][j])
-            left_res = backtrack(i+1,j,cur+grid[i][j])
-            grid[i][j] = 0
-            return max(down_res,left_res)
-    print(grid)
-    return backtrack(0,0,grid[0][0])
-print(cherry([[0,1,-1],[1,0,-1],[1,1,1]]))
+# def cherry(grid):
+#     max_cherry = 0
+#     n = len(grid)
+#     def backtrack(i,j,cur):
+#         if i == n or j == n:
+#             return cur
+#         elif grid[i][j] == -1:
+#             return 0
+#         else:
+#             down_res = backtrack(i,j+1,cur+grid[i][j])
+#             left_res = backtrack(i+1,j,cur+grid[i][j])
+#             grid[i][j] = 0
+#             return max(down_res,left_res)
+#     print(grid)
+#     return backtrack(0,0,grid[0][0])
+# print(cherry([[0,1,-1],[1,0,-1],[1,1,1]]))
 
+
+
+# def my_gen(max_count):
+#     cnt = 1
+#     while cnt <= max_count:
+#         yield cnt
+#         cnt += 1
+    
+# counter = my_gen(5)
+# print(next(counter))
+# print(next(counter))
 
     
 
+# def my_dec(func):
+#     def wrapper(*args,**kwargs):
+#         st = datetime.datetime.now()
+#         re = func(*args,**kwargs)
+#         exec_time = datetime.datetime.now() - st
+#         print(exec_time)
+#         return
+#     return wrapper
+
+
+
+# import time,datetime
+# @my_dec
+# def my_func(n):
+#     time.sleep(n)
+#     return
+
+# my_func(2)
+
+# def my_gen():
+#     print("start")
+#     yield 1
+#     print("middle")
+#     yield 2
+#     print("end")
+
+# gen = my_gen()
+# print("created generator")
+# print(next(gen))
+# print(next(gen))
+# print(next(gen))
+# print(next(gen))
+
+
+
+# import copy
+
+# original = [[1, 2, 3], [4, 5, 6]]
+
+# shallow = original
+# deep = copy.deepcopy(original)
+
+# original[0][0] = 999
+# original.append([7, 8, 9])
+
+# print("Original:", original)
+# print("Shallow:", shallow)
+# print("Deep:", deep)
+
+
+# def get_chunks(text,chunk_size=50,overlap=10):
+#     chunks = []
+#     cur = ""
+#     id = 1
+#     ptr = 0
+#     while ptr < len(text):
+#         cur = text[ptr:ptr+chunk_size]
+#         if id != 1:
+#             cur = text[ptr-overlap: ptr] + cur
+#         ptr += chunk_size
+#         chunks.append({"id": id, "text": cur})
+#         id += 1
+#     if cur:
+#         chunks.append({"id": id+1, "text": cur})
+#     return chunks
+
+# text = "Great work sticking with the harder questions — you're doing well on RAG mechanics. Let's shift to a coding question next.Question 6 (Applied Python + LLM):Write a Python function that takes a long piece of text and a chunk_size (in characters) and returns a list of overlapping chunks, where each chunk overlaps with the previous one by a given overlap amount. Then briefly explain the time complexity of your solution."
+
+# print(get_chunks(text))
+
+
+# def merge_sort(arr):
+#     cnt = 0
+#     if len(arr) <= 1:
+#         return arr,0
+#     mid = len(arr)//2
+
+#     left, lc = merge_sort(arr[:mid])
+#     right, rc = merge_sort(arr[mid:])
+    
+#     merged,mc = helper(left,right)
+
+#     return merged , lc+rc+mc
+
+# def helper(left,right):
+#     i,j,k,cnt = 0,0,0,0
+#     merged = [0] * (len(left)+len(right))
+
+#     while i < len(left) and j < len(right):
+#         if left[i] <= right[j]:
+#             merged[k] = left[i]
+#             k += 1
+#             i += 1
+#         else:
+#             cnt += len(left) - i
+#             merged[k] = right[j]
+#             k += 1
+#             j += 1
+#     while i < len(left):
+#         merged[k] = left[i]
+#         i += 1
+#         k += 1
+#     while j < len(right):
+#         merged[k] = right[j]
+#         j += 1
+#         k += 1
+#     return merged,cnt
+
+# print(merge_sort([2, 4, 1, 3, 5]))
+
+
+# # 153 minimum in sorted rotated array
+# def mini_rotate(nums):
+#     l ,h = 0, len(nums)-1
+#     re = 1e9
+
+#     while l <= h:
+#         mid = (l+h)//2
+#         if nums[l] <= nums[mid]: # left sorted
+#             re = min(re,nums[l])
+#             l = mid + 1
+#         else: # right sorted
+#             re = min(re,nums[mid])
+#             h = mid - 1
+#     return re
+# print(mini_rotate([3,4,5,6,0,2]))
+
+# word = "aaaaaaaaaaaaaaa"
+# re = 0
+# mul = 1
+# n = len(word)
+# while n >= 8:
+#     n -= 8
+#     re = re + (mul*8)
+#     mul += 1
+# re = re + (mul*n)
+# print(re)
+
+
+# import multiprocessing as mp
+# import time, datetime
+# def square(x):
+#     time.sleep(3)
+#     return x*x
+
+# if __name__ == '__main__':
+#     t1 = datetime.datetime.now()
+#     with mp.Pool(processes=5) as pool:
+#         re = pool.map(square,range(5))
+#     # re = [square(x) for x in range(5)]
+#     print(re)
+#     print(datetime.datetime.now()-t1)
+
+# import copy
+
+# original = [[1, 2, 3], [4, 5, 6]]
+
+# shallow = copy.copy(original)
+# deep = copy.deepcopy(original)
+
+# original[0][0] = 999
+# original[0].append(34)
+
+# print("Original:", original)
+# print("Shallow:", shallow)
+# print("Deep:", deep)
+
+
+# lst = [0,0,0]
+# lst[0] = 8
+# lst[1] = "sdsd"
+# print(lst)
+
+# import array
+
+# arr = array.array("i",[1,2,3,4])
+# arr[1] = "rr"
+# print(arr)
+
+
+# def make_multiplier(i):
+#     def multiply(x):
+#         return x * i
+#     return multiply
+
+# multipliers = [make_multiplier(i) for i in range(1, 4)]
+# print([f(9) for f in multipliers])
+
+# def count_up_to(max):
+#     count = 1
+#     while count <= max:
+#         print("now",count)
+#         yield count
+#         print("HERE",count)
+#         count += 1
+
+# for number in count_up_to(5):
+#     print(number)  
+#     inp = input()
+    
+
+
+"""
+We are building Customer Sync Queue, a back-end system that sends customer changes to an external CRM.
+
+Definitions:
+* A "customer" is an object representing a person or account whose profile is mirrored in the external CRM. A customer has:
+  - customer_id
+  - name
+  - email
+  - phone
+  - company
+  - last_synced_values (the most recent value of each field that's actually been confirmed synced to the CRM)
+
+* A "queued update" is an object representing a single pending change to one field of a customer, waiting to be pushed to the external CRM. A queued update has:
+  - update_id
+  - customer_id
+  - field_name
+  - new_value
+  - created_at
+  - status
+  - attempts
+  - error_type
+
+* A queued update's status can be one of:
+  - PENDING
+  - PROCESSING
+  - SUCCEEDED
+  - FAILED
+  - CANCELLED
+
+* An update with status FAILED also carries an error_type of either RETRYABLE (a transient failure worth trying again) or NON_RETRYABLE (a permanent rejection that won't succeed on retry).
+
+* Only PENDING updates and retryable FAILED updates are eligible for synchronization.
+
+The CustomerSyncManager class manages customers and queued updates.
+
+To begin with, we present you with two tasks:
+
+1-1) Read through and understand the code below. Feel free to run it.
+1-2) The test for CustomerSyncManager is not passing due to a bug in the code. Make the necessary changes to CustomerSyncManager to fix the bug.
+"""
+"""
+We are extending Customer Sync Queue to let support agents queue a customer field change, or cancel one that's no longer needed. This keeps the sync queue accurate before changes reach the CRM.
+
+Add two functions to the CustomerSyncManager class.
+
+2-1) queue_update
+
+The queue_update function takes a customer ID, a field name, a new value, and a created-at timestamp. It should add a new pending update only when all of the following conditions are satisfied:
+- The customer exists.
+- The field is one of the supported fields: name, email, phone, company.
+- The new value differs from the customer's current value.
+
+A new update should receive the next available update ID, have status PENDING, have zero attempts, and initially have no error type. Ignore the request when any validation fails.
+
+2-2) cancel_pending_updates
+
+The cancel_pending_updates function takes a customer ID and a field name. It should cancel all PENDING updates for that customer and field, changing their status to CANCELLED. Updates with any other status must be left untouched.
+
+Return the number of updates cancelled, or 0 if the customer does not exist or no matching updates are found.
+"""
+
+# import unittest
+
+
+# class Customer:
+#     def __init__(
+#         self,
+#         customer_id,
+#         name,
+#         email,
+#         phone,
+#         company,
+#         last_synced_values
+#     ):
+#         """Creates a customer record with the fields tracked for CRM sync."""
+#         self.customer_id = customer_id
+#         self.name = name
+#         self.email = email
+#         self.phone = phone
+#         self.company = company
+#         self.last_synced_values = last_synced_values
+
+
+# class QueuedUpdate:
+#     def __init__(
+#         self,
+#         update_id,
+#         customer_id,
+#         field_name,
+#         new_value,
+#         created_at,
+#         status,
+#         attempts=0,
+#         error_type=None
+#     ):
+#         """Creates a queued update representing one field change awaiting sync to the CRM."""
+#         self.update_id = update_id
+#         self.customer_id = customer_id
+#         self.field_name = field_name
+#         self.new_value = new_value
+#         self.created_at = created_at
+#         self.status = status
+#         self.attempts = attempts
+#         self.error_type = error_type
+
+
+# class CustomerSyncManager:
+#     SUPPORTED_FIELDS = {"name", "email", "phone", "company"}
+
+#     def __init__(self):
+#         """Creates a sync manager with empty customer and update stores."""
+#         self.customers = {}
+#         self.updates = {}
+#         self.next_update_id = 1
+
+#     def count_pending_updates(self):
+#         """Counts how many queued updates are currently eligible for synchronization (pending, or failed and retryable)."""
+#         count = 0
+        
+# #       - PENDING 
+# #       - PROCESSING
+# #       - SUCCEEDED
+# #       - FAILED - Retryable
+#         # - failed - non retryable
+# #       - CANCELLED
+        
+#         # print(self.updates)
+#         for update in self.updates.values():
+#             # for k,v in update.items():
+#                 # print(k,v)
+#             if update.status == "PENDING":
+#                 count += 1
+#             elif update.status == "FAILED" and update.error_type == "RETRYABLE":
+#                 count += 1
+
+#         return count
+    
+#     def queue_update(self,customer_id,field_name,new_value,created_at):
+#         if customer_id not in self.customers:
+#             self.updates = {} 
+#             return
+#         if field_name not in self.SUPPORTED_FIELDS:
+#             self.updates = {} 
+#             return
+#         if getattr(self.customers[customer_id],field_name) == new_value:
+#             self.updates = {} 
+#             return
+#         setattr(self.customers[customer_id],field_name,new_value)
+#         self.updates[self.next_update_id] = QueuedUpdate(self.next_update_id,customer_id,field_name,new_value,created_at,"PENDING")
+#         g = self.next_update_id
+#         self.next_update_id += 1
+        
+#         return self.updates[g]
+
+#     def cancel_pending_updates(self,customer_id,field_id):
+#         count = 0
+
+#         for update in self.updates.values():
+#             print(update.customer_id,update.field_name,update.status)
+#             if update.customer_id == customer_id and update.field_name == field_id and update.status == "PENDING":
+#                 update.status = "CANCELLED"
+#                 count += 1
+#         return count
+
+
+
+
+# class TestSuite(unittest.TestCase):
+#     def test_count_pending_updates_1(self):
+#         """Test pending and retryable failed updates."""
+#         print("Running test_count_pending_updates_1")
+
+#         # Pending update.
+#         manager = CustomerSyncManager()
+#         manager.updates[1] = QueuedUpdate(
+#             1, "C-1", "name", "Asha Rao", 10, "PENDING"
+#         )
+#         result = manager.count_pending_updates()
+#         self.assertEqual(1, result)
+
+#         # Retryable failed update.
+#         manager = CustomerSyncManager()
+#         manager.updates[1] = QueuedUpdate(
+#             1, "C-1", "phone", "555-0192", 10, "FAILED",
+#             attempts=1, error_type="RETRYABLE"
+#         )
+#         result = manager.count_pending_updates()
+#         self.assertEqual(1, result)
+
+#     def test_count_pending_updates_2(self):
+#         """Test cancelled, non-retryable failed, and processing updates."""
+#         print("Running test_count_pending_updates_2")
+
+#         # Cancelled update.
+#         manager = CustomerSyncManager()
+#         manager.updates[1] = QueuedUpdate(
+#             1, "C-1", "name", "Asha Rao", 10, "CANCELLED"
+#         )
+#         result = manager.count_pending_updates()
+#         self.assertEqual(0, result)
+
+#         # Non-retryable failed update.
+#         manager = CustomerSyncManager()
+#         manager.updates[1] = QueuedUpdate(
+#             1, "C-1", "phone", "555-0192", 10, "FAILED",
+#             attempts=3, error_type="NON_RETRYABLE"
+#         )
+#         result = manager.count_pending_updates()
+#         self.assertEqual(0, result)
+
+#         # Processing update.
+#         manager = CustomerSyncManager()
+#         manager.updates[1] = QueuedUpdate(
+#             1, "C-1", "email", "asha@example.com", 10, "PROCESSING"
+#         )
+#         result = manager.count_pending_updates()
+#         self.assertEqual(0, result)
+
+#     def test_count_pending_updates_3(self):
+#         """Test a mix of statuses across multiple customers and updates."""
+#         print("Running test_count_pending_updates_3")
+
+#         manager = CustomerSyncManager()
+#         manager.updates[1] = QueuedUpdate(
+#             1, "C-1", "name", "Asha Rao", 10, "PENDING"
+#         )
+#         manager.updates[2] = QueuedUpdate(
+#             2, "C-1", "phone", "555-0192", 12, "FAILED",
+#             attempts=1, error_type="RETRYABLE"
+#         )
+#         manager.updates[3] = QueuedUpdate(
+#             3, "C-1", "email", "asha@example.com", 14, "CANCELLED"
+#         )
+#         manager.updates[4] = QueuedUpdate(
+#             4, "C-1", "company", "Acme", 16, "SUCCEEDED"
+#         )
+#         manager.updates[5] = QueuedUpdate(
+#             5, "C-2", "name", "Ravi Kapoor", 18, "PROCESSING"
+#         )
+#         manager.updates[6] = QueuedUpdate(
+#             6, "C-2", "phone", "555-0111", 20, "FAILED",
+#             attempts=2, error_type="NON_RETRYABLE"
+#         )
+
+#         result = manager.count_pending_updates()
+
+#         # Mixed statuses across customers.
+#         self.assertEqual(2, result)
+
+#     def test_count_pending_updates_4(self):
+#         """Test an empty collection of updates."""
+#         print("Running test_count_pending_updates_4")
+
+#         manager = CustomerSyncManager()
+
+#         result = manager.count_pending_updates()
+
+#         self.assertEqual(0, result)
+        
+#     def test_queue_update_1(self):
+#         """Test that a valid update is queued as PENDING with correct fields, and that
+#         successive queued updates each receive the next available update ID."""
+#         print("Running test_queue_update_1")
+
+#         manager = CustomerSyncManager()
+#         manager.customers["C-1"] = Customer(
+#             "C-1", "Asha", "asha@example.com", "555-0100", "Acme",
+#             {"name": "Asha", "email": "asha@example.com", "phone": "555-0100", "company": "Acme"}
+#         )
+
+#         # Valid update.
+#         first = manager.queue_update("C-1", "name", "Asha Rao", 10)
+
+#         self.assertIsNotNone(first)
+#         self.assertEqual(1, first.update_id)
+#         self.assertEqual("PENDING", first.status)
+#         self.assertEqual(0, first.attempts)
+#         self.assertIsNone(first.error_type)
+#         self.assertIn(1, manager.updates)
+
+#         # Second update.
+#         second = manager.queue_update("C-1", "phone", "555-0192", 12)
+
+#         self.assertEqual(2, second.update_id)
+#         self.assertEqual(2, len(manager.updates))
+
+#     def test_queue_update_2(self):
+#         """Test that queue_update rejects a same-value update, an unsupported field,
+#         and a non-existent customer."""
+#         print("Running test_queue_update_2")
+
+#         manager = CustomerSyncManager()
+#         manager.customers["C-1"] = Customer(
+#             "C-1", "Asha", "asha@example.com", "555-0100", "Acme",
+#             {"name": "Asha", "email": "asha@example.com", "phone": "555-0100", "company": "Acme"}
+#         )
+
+#         # Value matches current value.
+#         same_value = manager.queue_update("C-1", "name", "Asha", 10)
+
+#         self.assertIsNone(same_value)
+#         self.assertEqual({}, manager.updates)
+
+#         # Unsupported field.
+#         unsupported_field = manager.queue_update("C-1", "fax", "555-9999", 10)
+
+#         self.assertIsNone(unsupported_field)
+#         self.assertEqual({}, manager.updates)
+
+#         # Non-existent customer.
+#         unknown_customer = manager.queue_update("UNKNOWN", "name", "Asha Rao", 10)
+
+#         self.assertIsNone(unknown_customer)
+#         self.assertEqual({}, manager.updates)
+
+#     def test_queue_update_3(self):
+#         """Test that queue_update compares against the customer's live field value, not
+#         last_synced_values, when the field has no entry there yet."""
+#         print("Running test_queue_update_3")
+
+#         manager = CustomerSyncManager()
+#         # "phone" has no entry in last_synced_values.
+#         manager.customers["C-1"] = Customer(
+#             "C-1", "Asha", "asha@example.com", "555-0100", "Acme",
+#             {"name": "Asha", "email": "asha@example.com", "company": "Acme"}
+#         )
+
+#         update = manager.queue_update("C-1", "phone", "555-0192", 10)
+
+#         self.assertIsNotNone(update)
+#         self.assertEqual("555-0192", update.new_value)
+#         self.assertEqual("PENDING", update.status)
+#         self.assertEqual(0, update.attempts)
+#         self.assertIsNone(update.error_type)
+#         self.assertIn(update.update_id, manager.updates)
+
+#     def test_queue_update_4(self):
+#         """Test rejecting an update whose new value matches the customer's current field value."""
+#         print("Running test_queue_update_4")
+
+#         manager = CustomerSyncManager()
+#         manager.customers["C-1"] = Customer(
+#             "C-1", "Asha", "asha@example.com", "555-0100", "Acme",
+#             {"name": "Asha", "email": "asha@example.com", "phone": "555-0000", "company": "Acme"}
+#         )
+
+#         update = manager.queue_update("C-1", "phone", "555-0100", 10)
+
+#         self.assertIsNone(update)
+#         self.assertEqual({}, manager.updates)
+
+#     def test_cancel_pending_updates_1(self):
+#         """Test that all PENDING updates for a customer and field are cancelled."""
+#         print("Running test_cancel_pending_updates_1")
+
+#         manager = CustomerSyncManager()
+#         manager.customers["C-1"] = Customer(
+#             "C-1", "Asha", "asha@example.com", "555-0100", "Acme", {}
+#         )
+#         manager.updates[1] = QueuedUpdate(1, "C-1", "name", "Asha Rao", 10, "PENDING")
+#         manager.updates[2] = QueuedUpdate(2, "C-1", "name", "Asha R.", 12, "PENDING")
+
+#         cancelled = manager.cancel_pending_updates("C-1", "name")
+
+#         self.assertEqual(2, cancelled)
+#         self.assertEqual("CANCELLED", manager.updates[1].status)
+#         self.assertEqual("CANCELLED", manager.updates[2].status)
+
+#     def test_cancel_pending_updates_2(self):
+#         """Test that non-PENDING updates are left untouched, and that only updates
+#         matching the given field are cancelled."""
+#         print("Running test_cancel_pending_updates_2")
+
+#         # Sub-case: updates with a status other than PENDING (processing, failed,
+#         # succeeded, cancelled).
+#         manager = CustomerSyncManager()
+#         manager.customers["C-1"] = Customer(
+#             "C-1", "Asha", "asha@example.com", "555-0100", "Acme", {}
+#         )
+#         manager.updates[1] = QueuedUpdate(1, "C-1", "name", "Asha Rao", 10, "PROCESSING")
+#         manager.updates[2] = QueuedUpdate(
+#             2, "C-1", "name", "Asha R.", 12, "FAILED",
+#             attempts=1, error_type="RETRYABLE"
+#         )
+#         manager.updates[3] = QueuedUpdate(3, "C-1", "name", "A. Rao", 14, "SUCCEEDED")
+#         manager.updates[4] = QueuedUpdate(4, "C-1", "name", "AR", 16, "CANCELLED")
+
+#         cancelled = manager.cancel_pending_updates("C-1", "name")
+
+#         self.assertEqual(0, cancelled)
+#         self.assertEqual("PROCESSING", manager.updates[1].status)
+#         self.assertEqual("FAILED", manager.updates[2].status)
+#         self.assertEqual("SUCCEEDED", manager.updates[3].status)
+#         self.assertEqual("CANCELLED", manager.updates[4].status)
+
+#         # Sub-case: a PENDING update on a different field.
+#         manager2 = CustomerSyncManager()
+#         manager2.customers["C-1"] = Customer(
+#             "C-1", "Asha", "asha@example.com", "555-0100", "Acme", {}
+#         )
+#         manager2.updates[1] = QueuedUpdate(1, "C-1", "name", "Asha Rao", 10, "PENDING")
+#         manager2.updates[2] = QueuedUpdate(2, "C-1", "phone", "555-0192", 12, "PENDING")
+
+#         cancelled2 = manager2.cancel_pending_updates("C-1", "name")
+
+#         self.assertEqual(1, cancelled2)
+#         self.assertEqual("CANCELLED", manager2.updates[1].status)
+#         self.assertEqual("PENDING", manager2.updates[2].status)
+
+#     def test_cancel_pending_updates_3(self):
+#         """Test that cancelling for a non-existent customer returns zero."""
+#         print("Running test_cancel_pending_updates_3")
+
+#         manager = CustomerSyncManager()
+
+#         cancelled = manager.cancel_pending_updates("UNKNOWN", "name")
+
+#         self.assertEqual(0, cancelled)
+
+#     def test_cancel_pending_updates_4(self):
+#         """Test that cancelling one customer/field's updates leaves other customers and fields
+#         untouched, and that update IDs keep incrementing correctly after a cancellation."""
+#         print("Running test_cancel_pending_updates_4")
+
+#         manager = CustomerSyncManager()
+#         manager.customers["C-1"] = Customer(
+#             "C-1", "Asha", "asha@example.com", "555-0100", "Acme",
+#             {"name": "Asha", "email": "asha@example.com", "phone": "555-0100", "company": "Acme"}
+#         )
+#         manager.customers["C-2"] = Customer(
+#             "C-2", "Ravi", "ravi@example.com", "555-0200", "Globex",
+#             {"name": "Ravi", "email": "ravi@example.com", "phone": "555-0200", "company": "Globex"}
+#         )
+
+#         first = manager.queue_update("C-1", "phone", "555-0192", 10)
+#         second = manager.queue_update("C-1", "name", "Asha Rao", 11)
+#         third = manager.queue_update("C-2", "phone", "555-0299", 12)
+
+#         cancelled = manager.cancel_pending_updates("C-1", "phone")
+
+#         # C-1's pending "phone" update.
+#         self.assertEqual(1, cancelled)
+#         self.assertEqual("CANCELLED", manager.updates[first.update_id].status)
+#         # C-1's "name" update (a different field).
+#         self.assertEqual("PENDING", manager.updates[second.update_id].status)
+#         # C-2's "phone" update (a different customer).
+#         self.assertEqual("PENDING", manager.updates[third.update_id].status)
+
+#         # A new update queued after the cancellation.
+#         fourth = manager.queue_update("C-1", "company", "Globex Inc", 13)
+
+#         self.assertEqual(4, fourth.update_id)
+#         self.assertEqual(4, len(manager.updates))
+
+
+# if __name__ == "__main__":
+#     unittest.main()
+
+
+"""
+We are building Ticket Escalation Queue, a back-end system that tracks support
+tickets and escalates the ones that are breaching their SLA.
+
+Definitions:
+* A "ticket" is an object representing a customer support ticket. A ticket has:
+  - ticket_id
+  - subject
+  - priority
+  - status
+  - opened_at
+  - escalated_at (the time the ticket was escalated, or None if never escalated)
+
+* A ticket's priority can be one of:
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+
+* A ticket's status can be one of:
+  - OPEN
+  - IN_PROGRESS
+  - ESCALATED
+  - RESOLVED
+  - CLOSED
+
+* Each priority has an SLA (in hours) by which it should be resolved:
+  - HIGH: 24 hours
+  - CRITICAL: 4 hours
+  - LOW and MEDIUM tickets have no SLA and are never considered overdue.
+
+* A ticket is "overdue" when all of the following hold:
+  - Its status is OPEN or IN_PROGRESS.
+  - Its priority is HIGH or CRITICAL.
+  - The elapsed time (current_time - opened_at) is strictly greater than its
+    priority's SLA. A ticket exactly at its SLA boundary is NOT yet overdue.
+
+The TicketQueueManager class manages tickets.
+
+To begin with, we present you with two tasks:
+
+1-1) Read through and understand the code below. Feel free to run it.
+1-2) The test for TicketQueueManager is not passing due to a bug in the code.
+     Make the necessary changes to TicketQueueManager to fix the bug.
+"""
+
+"""
+We are extending Ticket Escalation Queue to let the system automatically
+escalate overdue tickets, and let agents mark a ticket resolved.
+
+Add two functions to the TicketQueueManager class.
+
+2-1) escalate_ticket
+
+The escalate_ticket function takes a ticket ID and the current time. It should
+escalate the ticket -- setting its status to ESCALATED and recording
+escalated_at as the given current time -- only when all of the following hold:
+- The ticket exists.
+- The ticket's status is OPEN or IN_PROGRESS.
+- The ticket is overdue per the definition above, at the given current time.
+
+Return the updated ticket if it was escalated, or None if any condition fails
+(including when the ticket does not exist).
+
+2-2) resolve_ticket
+
+The resolve_ticket function takes a ticket ID. It should set the ticket's
+status to RESOLVED only when the ticket exists and its current status is one
+of OPEN, IN_PROGRESS, or ESCALATED. A ticket that is already RESOLVED or
+CLOSED must be left untouched.
+
+Return True if the ticket was resolved, or False if the ticket does not exist
+or its status did not allow resolving.
+"""
+
+# import unittest
+
+
+# class Ticket:
+#     def __init__(
+#         self,
+#         ticket_id,
+#         subject,
+#         priority,
+#         status,
+#         opened_at,
+#         escalated_at=None
+#     ):
+#         """Creates a support ticket."""
+#         self.ticket_id = ticket_id
+#         self.subject = subject
+#         self.priority = priority
+#         self.status = status
+#         self.opened_at = opened_at
+#         self.escalated_at = escalated_at
+
+
+# class TicketQueueManager:
+#     SLA_HOURS = {"HIGH": 24, "CRITICAL": 4}
+
+#     def __init__(self):
+#         """Creates a queue manager with an empty ticket store."""
+#         self.tickets = {}
+
+#     def count_overdue_tickets(self, current_time):
+#         """Counts tickets that are open/in-progress, high/critical priority,
+#         and past their SLA threshold at the given current time."""
+#         count = 0
+
+#         for ticket in self.tickets.values():
+#             if ticket.status in ("OPEN", "IN_PROGRESS") and ticket.priority in self.SLA_HOURS:
+#                 elapsed = current_time - ticket.opened_at
+#                 if elapsed > self.SLA_HOURS[ticket.priority]:
+#                     count += 1
+
+#         return count
+    
+#     def escalate_ticket(self,ticket_id,current_time):
+#         if ticket_id not in self.tickets.keys():
+#             return None
+#         ticket = self.tickets[ticket_id]
+#         if ticket.status not in ("OPEN","IN_PROGRESS") or ticket.priority not in ("HIGH", "CRITICAL"):
+#             return None
+#         elapsed = current_time - ticket.opened_at
+#         if elapsed > self.SLA_HOURS[ticket.priority]:
+#             ticket.status = "ESCALATED"
+#             ticket.escalated_at = current_time
+#             return ticket
+#         return None
+    
+#     def resolve_ticket(self,ticket_id):
+#         if ticket_id not in self.tickets.keys():
+#             return False
+#         ticket = self.tickets[ticket_id]
+#         if ticket.status in ("OPEN", "IN_PROGRESS", "ESCALATED"):
+#             ticket.status = "RESOLVED"
+#             return True
+#         return False
+
+
+# class TestSuite(unittest.TestCase):
+#     def test_count_overdue_1(self):
+#         """A HIGH ticket exactly at the SLA boundary is NOT yet overdue."""
+#         print("Running test_count_overdue_1")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Login broken", "HIGH", "OPEN", opened_at=0)
+#         result = manager.count_overdue_tickets(current_time=24)
+#         self.assertEqual(0, result)
+
+#     def test_count_overdue_2(self):
+#         """A HIGH ticket past the SLA boundary is overdue."""
+#         print("Running test_count_overdue_2")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Login broken", "HIGH", "OPEN", opened_at=0)
+#         result = manager.count_overdue_tickets(current_time=25)
+#         self.assertEqual(1, result)
+
+#     def test_count_overdue_3(self):
+#         """A CRITICAL ticket exactly at its (shorter) SLA boundary is NOT overdue."""
+#         print("Running test_count_overdue_3")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Prod outage", "CRITICAL", "IN_PROGRESS", opened_at=10)
+#         result = manager.count_overdue_tickets(current_time=14)
+#         self.assertEqual(0, result)
+
+#     def test_count_overdue_4(self):
+#         """LOW/MEDIUM priority tickets never count, regardless of age."""
+#         print("Running test_count_overdue_4")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Typo on page", "LOW", "OPEN", opened_at=0)
+#         manager.tickets[2] = Ticket(2, "Slow report", "MEDIUM", "OPEN", opened_at=0)
+#         result = manager.count_overdue_tickets(current_time=1000)
+#         self.assertEqual(0, result)
+
+#     def test_count_overdue_5(self):
+#         """RESOLVED/CLOSED/ESCALATED tickets never count, even if past SLA."""
+#         print("Running test_count_overdue_5")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Old bug", "CRITICAL", "RESOLVED", opened_at=0)
+#         manager.tickets[2] = Ticket(2, "Old bug 2", "HIGH", "CLOSED", opened_at=0)
+#         manager.tickets[3] = Ticket(3, "Old bug 3", "CRITICAL", "ESCALATED", opened_at=0)
+#         result = manager.count_overdue_tickets(current_time=1000)
+#         self.assertEqual(0, result)
+
+#     def test_count_overdue_6(self):
+#         """Mixed set of statuses and priorities."""
+#         print("Running test_count_overdue_6")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "A", "HIGH", "OPEN", opened_at=0)              # overdue at t=30
+#         manager.tickets[2] = Ticket(2, "B", "CRITICAL", "IN_PROGRESS", opened_at=28)  # overdue at t=30
+#         manager.tickets[3] = Ticket(3, "C", "HIGH", "OPEN", opened_at=20)             # not overdue at t=30
+#         manager.tickets[4] = Ticket(4, "D", "LOW", "OPEN", opened_at=0)               # never overdue
+
+#         result = manager.count_overdue_tickets(current_time=30)
+
+#         self.assertEqual(1, result)
+
+#     def test_escalate_ticket_1(self):
+#         """Test that an overdue ticket is escalated with the correct escalated_at."""
+#         print("Running test_escalate_ticket_1")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Prod outage", "CRITICAL", "OPEN", opened_at=0)
+
+#         result = manager.escalate_ticket(1, current_time=5)
+
+#         self.assertIsNotNone(result)
+#         self.assertEqual("ESCALATED", result.status)
+#         self.assertEqual(5, result.escalated_at)
+
+#     def test_escalate_ticket_2(self):
+#         """Test that a ticket not yet past its SLA is not escalated."""
+#         print("Running test_escalate_ticket_2")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Prod outage", "CRITICAL", "OPEN", opened_at=0)
+
+#         result = manager.escalate_ticket(1, current_time=4)
+
+#         self.assertIsNone(result)
+#         self.assertEqual("OPEN", manager.tickets[1].status)
+
+#     def test_escalate_ticket_3(self):
+#         """Test that a LOW priority ticket is never escalated, even if very old."""
+#         print("Running test_escalate_ticket_3")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Typo", "LOW", "OPEN", opened_at=0)
+
+#         result = manager.escalate_ticket(1, current_time=1000)
+
+#         self.assertIsNone(result)
+
+#     def test_escalate_ticket_4(self):
+#         """Test that an already-resolved ticket and an unknown ticket ID both
+#         return None."""
+#         print("Running test_escalate_ticket_4")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Prod outage", "CRITICAL", "RESOLVED", opened_at=0)
+
+#         result = manager.escalate_ticket(1, current_time=1000)
+#         self.assertIsNone(result)
+
+#         result2 = manager.escalate_ticket("UNKNOWN", current_time=1000)
+#         self.assertIsNone(result2)
+
+#     def test_resolve_ticket_1(self):
+#         """Test that an ESCALATED ticket can be resolved."""
+#         print("Running test_resolve_ticket_1")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Prod outage", "CRITICAL", "ESCALATED", opened_at=0)
+
+#         result = manager.resolve_ticket(1)
+
+#         self.assertTrue(result)
+#         self.assertEqual("RESOLVED", manager.tickets[1].status)
+
+#     def test_resolve_ticket_2(self):
+#         """Test that a CLOSED ticket cannot be resolved and is left untouched."""
+#         print("Running test_resolve_ticket_2")
+
+#         manager = TicketQueueManager()
+#         manager.tickets[1] = Ticket(1, "Old", "LOW", "CLOSED", opened_at=0)
+
+#         result = manager.resolve_ticket(1)
+
+#         self.assertFalse(result)
+#         self.assertEqual("CLOSED", manager.tickets[1].status)
+
+#     def test_resolve_ticket_3(self):
+#         """Test that resolving an unknown ticket ID returns False."""
+#         print("Running test_resolve_ticket_3")
+
+#         manager = TicketQueueManager()
+
+#         result = manager.resolve_ticket("UNKNOWN")
+
+#         self.assertFalse(result)
+
+
+# if __name__ == "__main__":
+#     unittest.main()
+
+
+
+# def isPrime(n):
+#     if n <= 3: return True
+#     if n%2 == 0 or n%3 == 0: return True
+#     i = 5
+#     while i*i <= n:
+#         if n % i == 0 or n % (i+2) == 0:
+#             return False
+#         i += 6
+#     return True
+# print(isPrime(25))
+# # for i in range(2,3):print(i)
+# def primeSum(n):
+#     def isPrime(n):
+#             if n <= 1: return False
+#             if n <=3 : return True
+#             if n%2 == 0 or n%3 == 0: return False
+#             i = 5
+#             while i*i <= n:
+#                 if n % i == 0 or n % (i+2) == 0:
+#                     return False
+#                 i += 6
+#             return True
+#     if n < 4: return False
+#     if n==4: return True 
+#     for i in range(2,n-2):
+#         if isPrime(i) == True and isPrime(n-i) == True:
+#             print(i)
+#             return True
+#     return False
+# print(primeSum(27))
+
+
+# def BracketCombinations(num):
+
+#     def isValid(s):
+#         f = 0
+#         b = 0
+#         for i in range(len(s)):
+#             if s[i] == "(": f += 1
+#             else: b += 1
+#             if b > f: return 0
+#         if f != b: return 0
+#         return 1
+
+#     num *= 2
+#     # code goes here
+#     def helper(s):
+#         if len(s) == num:
+#             return isValid(s)
+#         result = helper(s+"(") + helper(s+")")
+#         return result
+#     return helper("")
+# print(BracketCombinations(8))
+
+
+
+
+# def max_subarray(nums,k):
+#     if sum(nums) < k: return -1
+#     if sum(nums) == k: return len(nums)
+
+#     l,r = 0,0
+#     max_len = 0
+#     while r < len(nums):
+#         print(nums[l:r])
+#         if sum(nums[l:r]) < k:
+#             r += 1
+#             continue
+#         elif sum(nums[l:r]) == k:
+#             max_len = max(max_len,r-l)
+#             print("#######",nums[l:r])
+#             l += 1
+#             continue
+#         else:
+#             l += 1
+#     return max_len
+# print(max_subarray([3,2,5,1,1,11,0,1],12))
+    
+# def max_sub2(nums,k):
+#     max_len,l,cur_sum = 0,0,0
+
+#     for r in range(len(nums)):
+#         cur_sum += nums[r]
+
+#         while cur_sum > k and l <= r:
+#             cur_sum -= nums[l]
+#             l += 1
+#         if cur_sum == k:
+#             max_len = max(max_len,r-l+1)
+#             print(nums[l:r+1])
+#     return max_len if max_len != 0 else -1
+# print(max_sub2([32,2,5,1,1,11,1],13))
+            
+
+
+# import time, datetime
+# from functools import wraps
+
+
+# def logger(function):
+#     @wraps(function)
+#     def wrapper(*args,**kwargs):
+#         t1 = datetime.datetime.now()
+#         result = function(*args,**kwargs)
+#         t2 = datetime.datetime.now() - t1
+#         print("Ran for ",t2,"secs")
+#         return result
+#     return wrapper
+
+# @logger
+# def my_fun(n):
+#     time.sleep(n)
+#     return n
+
+# print(my_fun(2))
+
+
+
+# def genr(n):
+#     w = 1
+#     while w < n:
+#         yield w
+#         w += 1
+
+# for i in genr(5):
+#     print(i)
+
+
+
+
+# def timer(func):
+#     @wraps.func
+#     def wrapper(*args,**kwargs):
+#         t1 = datetime.datetime.now()
+#         re = func(*args,**kwargs)
+#         t2 = datetime.datetime.now()
+#         fn_time = t2-t1
+#         print(fn_time)
+#         return re
+#     return wrapper
+
+# def func1(a,b):
+#     return a+b
+# def func1(a):
+#     return 2*a
+# print(func1(2,4))
+
+
+# def countIslands(grid,k):
+#     m = len(grid) # rows
+#     n = len(grid[0]) # cols
+
+#     visited = [[0] * n for _ in range(m) ]
+
+#     def helper(i,j):
+#         if grid[i][j] == 0 or visited[i][j] == 1:
+#             return 0
+#         re = grid[i][j]
+#         visited[i][j] = 1
+#         print("started for ",grid[i][j])
+#         # left
+#         if 0 <= j-1 < n:
+#             l = helper(i,j-1)
+#         else:
+#             l = 0
+#         if 0 <= i-1 < m :
+#             u = helper(i-1,j)
+#         else:
+#             u = 0
+#         if 0 <= j+1 < n :
+#             r = helper(i,j+1)
+#         else:
+#             r = 0
+#         if 0 <= i+1 < m :
+#             d = helper(i+1,j)
+#         else:
+#             d = 0
+#         re = re + l + u + d + r
+#         print("i",i,"j",j,"re",re)
+#         return re
+#     ans = []
+#     for i in range(m):
+#         for j in range(n):
+#             h = helper(i,j)
+#             print("i",i,"j",j,"hge",h)
+#             if h:
+#                 ans.append(h)
+#     print(ans)
+#     count = 0
+#     for island in ans:
+#         if island%k == 0: count += 1
+#     return count
+# grid = [[16,0],[0,0],[0,0],[0,3],[9,10]]
+# k = 13
+# print(countIslands(grid,k))
 
 
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
 
 
 

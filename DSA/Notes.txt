@@ -24,7 +24,7 @@ mutable objects are passed by reference while immutable objects are passed by va
 list or any iterators cannot be used as key in dict as they are not hashable and cannot be unique
 
 significance of if __name__ == "__main__":
-    provides clear entry point to program. Helps in execution flow of program, whether program is run directly of imported in different module
+    provides clear entry point to program. Helps in execution flow of program, whether program is run directly or imported in different module
     when a file is run via cmd, python interpreter automatically sets value of variable __name__ to the name of the module
     so when the condition is satisfied then only code below it is executed. Otherwise, we know program is imported in other module
 
@@ -51,7 +51,7 @@ A decorator is a higher-order function that takes another function as input, add
 the modified function. Essentially, it “wraps” a function, altering its behavior without changing its core logic.
 
 def deco(func):
-    @wraps(func). => maintaines thingslike __name__ metadata 
+    @wraps(func)  => maintaines thingslike __name__ metadata 
     def wrapper(*args,**kwargs):
         re = func(*args,**kwargs)
         re += 1 #modify the result
@@ -84,6 +84,26 @@ def greet(name):
 print(greet("Gagan"))
 
 
+__new__ actully created new instance of the class __init__ initialized it,
+also allocates memery for the object
+
+
+# Closures
+Closures are functions that remmebers variables from enclosing scope even after the outer function
+has finished executing. This works bcz function carry reference to defining env via __closure__ variable.
+Decorators are direct application of closures. 
+
+
+
+def make_mult(factor):
+    def multiplier(number):
+        return factor * number
+    
+double = make_mult(2)
+triple = make_mult(3)
+
+print(double(5))
+print(triple(5))
 
 
 
@@ -117,6 +137,22 @@ def add_item(item,lst=None):
 	return lst
 
 None is immutabel hence created new every function call
+
+# a advanced version of the same concept
+def make_multipliers():
+    multipliers = []
+    for i in range(1, 4):
+        def multiply(x,i=i):  # with i=i, function will give out i=3 for all funcs as i is not deefault arg so it will evel at call time when i=3 for all
+            return x * i
+        multipliers.append(multiply)
+    # print("m",multipliers)
+    return multipliers
+
+funcs = make_multipliers()
+# print(funcs)
+print([f(10) for f in funcs])
+
+
 
 
 a = [1, 2, 3]
@@ -201,10 +237,10 @@ class myclass:
 
     @property
     def count(self):
-        return self.count
+        return self._count
 
     @count.setter
-    def salary(self,value):
+    def count(self,value):
         if value < 0:
             raise ValueError("count negative")
         self.count = value
@@ -413,19 +449,6 @@ with sqlite_context_manager(file_name="abc.txt") as cursor:
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 01. Prefix Sum
 02. Two Pointers
 03. Sliding Window
@@ -523,4 +546,10 @@ Dynamic Programming
 1143. Longest Common Subsequence
 
 
+
+Describe one specific API endpoint you built end-to-end: the business problem, the request/response contract, and how you secured it ("secure API endpoints" — what did that mean in practice? auth, rate limiting, input validation?).
+
+Walk me through the multiprocessing optimization: what was the pipeline before, where was the bottleneck (CPU-bound? I/O-bound?), and why multiprocessing rather than threading or async?
+
+Did you write the Dockerfiles yourself? Any decisions around image size optimization (multi-stage builds, base image choice)?
 
